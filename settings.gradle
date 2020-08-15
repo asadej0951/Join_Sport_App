@@ -1,0 +1,2 @@
+include ':app'
+rootProject.name = "Join_Sport_App"

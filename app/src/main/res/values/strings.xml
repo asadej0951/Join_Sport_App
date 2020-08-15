@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">JoinSport</string>
+    <string name="title_home">หน้าหลัก</string>
+    <string name="title_dashboard">กิจกรรม</string>
+    <string name="title_notifications">สนามกีฬา</string>
+    <string name="title_menu">เมนู</string>
+
+    <string-array name="type">
+        <item>บาสเกตบอล</item>
+        <item>ฟุตบอล</item>
+        <item>ตะกร้อ</item>
+        <item>วิ่ง</item>
+        <item>เทนนิส</item>
+        <item>แบดมินตัน</item>
+    </string-array>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_main_operator">MainActivity</string>
+    <string name="title_activity_maps_operator">Map</string>
+    <string name="title_activity_map__detail_">Map</string>
+</resources>

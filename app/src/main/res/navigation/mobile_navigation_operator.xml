@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation_operator"
+    app:startDestination="@+id/navigation_home_operator"
+    tools:ignore="UnusedNavigation">
+
+    <fragment
+        android:id="@+id/navigation_home_operator"
+        android:name="com.example.join_sport_app.uioperator.home.Home_OperatorFragment"
+        android:label="@string/title_home"
+        tools:layout="@layout/fragment_home__operator" />
+
+    <fragment
+        android:id="@+id/navigation_dashboard_operator"
+        android:name="com.example.join_sport_app.uioperator.dashboard.Dashboard_OperatorFragment"
+        android:label="@string/title_notifications"
+        tools:layout="@layout/fragment_dashboard__operator" />
+
+    <fragment
+        android:id="@+id/navigation_menu_operator"
+        android:name="com.example.join_sport_app.uioperator.menu.Menu_OperatorFragment"
+        android:label="@string/title_menu"
+        tools:layout="@layout/fragment_menu__operator" />
+
+</navigation>

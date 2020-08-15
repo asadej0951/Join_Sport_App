@@ -1,0 +1,11 @@
+GET
+{BASE_URL}/activity
+
+
+
+
+%%%
+# GET
+# /activity
+
+# Error: java.lang.IllegalArgumentException: Expected URL scheme 'http' or 'https' but no colon was found
