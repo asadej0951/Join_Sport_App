@@ -1,42 +1,35 @@
-package com.example.join_sport_app.ui.menu
+package com.example.join_sport_app.ui.menu.activity
 
-import android.media.Image
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Message
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.join_sport_app.R
 import com.example.join_sport_app.adapterall.AdapterActivityUser
-import com.example.join_sport_app.rest.Utils
-import com.example.myapplicationproject.adapterall.AdapterActivity
 import com.example.myapplicationproject.model.ResponseActivity
 import com.example.myapplicationproject.presenter.PresenterActivity
 import com.example.myapplicationproject.rest.local.Preferrences
-import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_user_.*
-import kotlinx.android.synthetic.main.fragment_dashboard.*
-import kotlinx.android.synthetic.main.fragment_menu.view.*
+import kotlinx.android.synthetic.main.fragment_activity_.*
 
-class ActivityUser_Activity : AppCompatActivity() {
-
-    var mPreferrences = Preferrences(this)
+class Activity_Fragment : Fragment() {
+    lateinit var mPreferrences :Preferrences
     var mPresenterActivity = PresenterActivity()
     var mResponseActivity = ArrayList<ResponseActivity>()
     lateinit var mAdapterActivity : AdapterActivityUser
-    private var Image =""
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_user_)
-        name_ActivityProfile.setText(mPreferrences.getName_lname())
-        ID_user_ActivityProfile.setText(mPreferrences.getusername())
-        Image = mPreferrences.getImage()
-        Picasso.get().load(Utils.host+"/imageregister/"+ Image).into(img_ActivityProfile)
-        btn_back_toMenu_ActivityProfile.setOnClickListener { finish() }
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val root =  inflater.inflate(R.layout.fragment_activity_, container, false)
         setAPIActivityUser()
+        return root.rootView
     }
 
     private fun setAPIActivityUser() {
+        mPreferrences = Preferrences(context!!)
         var user_id = mPreferrences.getID()
 
         mPresenterActivity.ActivityUserPresenterRX(user_id,this::ActivityUserNext,this::ActivityUserError)
@@ -46,7 +39,7 @@ class ActivityUser_Activity : AppCompatActivity() {
         for (i in responseActivity.indices){
             mResponseActivity.add(responseActivity[i])
         }
-        mAdapterActivity = AdapterActivityUser(this,mResponseActivity)
+        mAdapterActivity = AdapterActivityUser(context!!,mResponseActivity)
         recyclerview_ActivityProfile.apply {
             layoutManager = LinearLayoutManager(context)
             adapter = mAdapterActivity
@@ -58,4 +51,6 @@ class ActivityUser_Activity : AppCompatActivity() {
     private fun ActivityUserError(message: String) {
 
     }
+
+
 }

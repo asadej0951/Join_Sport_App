@@ -138,7 +138,6 @@ class Create_Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMar
             lat.toString(),
            long.toString(),
             mPreferrences.getName_lname(),
-            mPreferrences.getImage(),
             this::onSuccessActivity,
             this::onErrorActivity
         )

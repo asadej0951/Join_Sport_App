@@ -4,22 +4,18 @@ import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
-import android.media.Image
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.join_sport_app.R
 import com.example.join_sport_app.rest.Utils
-import com.example.join_sport_app.ui.menu.ActivityUser_Activity
-import com.example.join_sport_app.ui.menu.UpDateActivityUser_Activity
+import com.example.join_sport_app.ui.menu.activity.ActivityUser_Activity
+import com.example.join_sport_app.ui.menu.activity.UpDateActivityUser_Activity
 import com.example.myapplicationproject.adapterall.ViewHolder
 import com.example.myapplicationproject.model.ResponseActivity
 import com.example.myapplicationproject.presenter.PresenterActivity
 import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.activity_user_.*
 import java.util.ArrayList
 
 class AdapterActivityUser(val ct : Context, private var mDataActivity : ArrayList<ResponseActivity>):RecyclerView.Adapter<ViewHolder>() {
@@ -43,10 +39,13 @@ class AdapterActivityUser(val ct : Context, private var mDataActivity : ArrayLis
         holder.TimeAC.text = mDataActivity.get(position).ac_time
         if (mDataActivity.get(position).ac_type.toInt() == 0){holder.typeAC.text = "บาสเกตบอล" }
         else if (mDataActivity.get(position).ac_type.toInt() == 1){holder.typeAC.text = "ฟุตบอล"}
-        else if (mDataActivity.get(position).ac_type.toInt() == 2){holder.typeAC.text = "ตะกร้อ"}
-        else if (mDataActivity.get(position).ac_type.toInt() == 3){holder.typeAC.text = "วิ่ง"}
-        else if (mDataActivity.get(position).ac_type.toInt() == 4){holder.typeAC.text = "เทนนิส"}
-        else {holder.typeAC.text = "แบดมินตัน"}
+        else if (mDataActivity.get(position).ac_type.toInt() == 2){holder.typeAC.text = "วอลเลย์บอล"}
+        else if (mDataActivity.get(position).ac_type.toInt() == 3){holder.typeAC.text = "ฟุตซอล"}
+        else if (mDataActivity.get(position).ac_type.toInt() == 4){holder.typeAC.text = "ตะกร้อ"}
+        else if (mDataActivity.get(position).ac_type.toInt() == 5){holder.typeAC.text = "วิ่ง"}
+        else if (mDataActivity.get(position).ac_type.toInt() == 6){holder.typeAC.text = "เทนนิส"}
+        else if (mDataActivity.get(position).ac_type.toInt() == 7){holder.typeAC.text = "แบดมินตัน"}
+        else {holder.typeAC.text = "เต้น"}
 
         holder.numberjoinAC.text = mDataActivity.get(position).ac_numberjoin.toString()
 
@@ -61,7 +60,7 @@ class AdapterActivityUser(val ct : Context, private var mDataActivity : ArrayLis
                     }
                     1->{
                         //แก้ไขกิจกรรม
-                        val i =Intent(ct,UpDateActivityUser_Activity::class.java)
+                        val i =Intent(ct, UpDateActivityUser_Activity::class.java)
                         i.putExtra("ac_id",mDataActivity[position].ac_id)
                         i.putExtra("ac_name",mDataActivity[position].ac_name)
                         i.putExtra("ac_type",mDataActivity[position].ac_type)
@@ -97,7 +96,7 @@ class AdapterActivityUser(val ct : Context, private var mDataActivity : ArrayLis
 
     private fun DeleteAcNext(responseActivity: ResponseActivity) {
         Toast.makeText(ct, "ลบเสร็จสิ้น", Toast.LENGTH_SHORT).show()
-        ct.startActivity(Intent(ct,ActivityUser_Activity::class.java))
+        ct.startActivity(Intent(ct, ActivityUser_Activity::class.java))
         (ct as Activity).finish()
     }
 }

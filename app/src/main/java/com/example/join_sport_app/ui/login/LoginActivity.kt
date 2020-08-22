@@ -111,6 +111,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun SelectImageOPTNext(response :List<ResponseImageOPT>) {
+        mPreferrences.saveIDImage(response[0].imgO_id.toString())
         mPreferrences.saveImage(response[0].o_img)
         startActivity(
             Intent(applicationContext,MainActivityOperator::class.java)
@@ -139,9 +140,8 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun SelectImageUserNext(response:List<ResponseImageUser>) {
-
+        mPreferrences.saveIDImage(response[0].imgU_id)
         mPreferrences.saveImage(response[0].u_img)
-        Toast.makeText(applicationContext, mPreferrences.getImage(), Toast.LENGTH_SHORT).show()
         startActivity(Intent(this, MainActivity::class.java))
         finish()
     }

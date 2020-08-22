@@ -30,6 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="จัดการสนามกีฬา"
+                android:fontFamily="@font/kanit"
                 android:textColor="#FFFFFF"
                 android:textSize="24sp" />
 

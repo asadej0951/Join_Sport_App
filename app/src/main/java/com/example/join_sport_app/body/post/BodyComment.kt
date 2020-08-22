@@ -8,3 +8,6 @@ data class BodyComment(
     val img:String,
     val com_time:String
 )
+data class BodyCommentImage(
+    val img:String
+)

@@ -11,10 +11,9 @@
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
         android:layout_height="56dp">
-        <FrameLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:gravity="center"
             android:orientation="horizontal">
             <ImageButton
                 android:id="@+id/imgbtn_registerBack"
@@ -31,9 +30,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="สมัครสมาชิก"
+                android:fontFamily="@font/kanit"
                 android:textColor="#FFFFFF"
-                android:textSize="36sp" />
-        </FrameLayout>
+                android:textSize="24sp" />
+        </LinearLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
 

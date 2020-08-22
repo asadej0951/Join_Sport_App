@@ -12,9 +12,12 @@ import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
 import com.example.join_sport_app.R
+import com.example.join_sport_app.model.ResponseComment
+import com.example.join_sport_app.model.ResponsePost
 import com.example.join_sport_app.model.operator.ResponseOPTProfile
 import com.example.join_sport_app.model.operator.ResponseUpdateOPT
 import com.example.join_sport_app.presenter.PresenterOperator
+import com.example.join_sport_app.presenter.PresenterPost
 import com.example.join_sport_app.rest.Utils
 import com.example.myapplicationproject.rest.local.Preferrences
 import com.squareup.picasso.Picasso
@@ -26,6 +29,7 @@ import java.lang.Exception
 class ProfileOPT_Activity : AppCompatActivity() {
     var mPreferrences = Preferrences(this)
     var mPresenterOperator = PresenterOperator()
+    var mPostPresenter = PresenterPost()
     private var o_Sname = ""
     private var o_address = ""
     private var o_email = ""
@@ -38,37 +42,68 @@ class ProfileOPT_Activity : AppCompatActivity() {
     private var img = ""
     private var o_id : Int? = null
     private var PICK_IMAGE = 999
-    private lateinit var imageName : File
+    var imageName : File? =null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_profile_o_p_t_)
         setAPIShowProfile()
         initViewButton()
+        Toast.makeText(applicationContext, mPreferrences.getIDImage(), Toast.LENGTH_SHORT).show()
     }
 
     private fun initViewButton() {
-        btn_back_toMenuOPT_Profile.setOnClickListener {finish()}
-        btn_cancel_ProfileOPT.setOnClickListener { finish() }
+        btn_back_toMenuOPT_Profile.setOnClickListener {
+            startActivity(
+                Intent(
+                    applicationContext, ShowProFileOPT_Activity::class.java
+                )
+            )
+            finish()
+        }
+        btn_cancel_ProfileOPT.setOnClickListener {
+            startActivity(
+                Intent(
+                    applicationContext, ShowProFileOPT_Activity::class.java
+                )
+            )
+            finish()
+        }
         btn_img_ProfileOPT.setOnClickListener {
             val i = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
             startActivityForResult(i,PICK_IMAGE)
         }
         btm_save_ProfileOPT.setOnClickListener {
             setAPIUpdateData()
-            setAPIUpdateImage()
+            if (imageName !=null) {
+                setAPIUpdateImage()
+            }
         }
     }
 
     private fun setAPIUpdateImage() {
-        mPresenterOperator.UpdateimageOPTPresenterRX(o_id.toString(),imageName){
+        mPresenterOperator.UpdateimageOPTPresenterRX(mPreferrences.getIDImage().toInt(),mPreferrences.getID(),imageName!!){
             if (it){
-                Toast.makeText(applicationContext, "UpDateImage Next!!", Toast.LENGTH_SHORT).show()
+                mPreferrences.saveImage(imageName!!.name)
+                mPostPresenter.updateDataPostImagePresenterRX(mPreferrences.getID().toInt(),imageName!!.name,this::UpdateImageNext,this::UpdateImageErro)
             }
             else{
                 Toast.makeText(applicationContext, "UpDateImage Error!!", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+    private fun UpdateImageNext(ResponsePost: ResponsePost) {
+        mPostPresenter.updateDataCommentImagePresenterRX(mPreferrences.getID().toInt(),imageName!!.name,this::CommentNext,this::CommentError)
+
+    }
+    private fun CommentNext(ResponseComment: ResponseComment) {
+    }
+
+    private fun CommentError(message: String) {
+    }
+
+    private fun UpdateImageErro(message: String) {
+
     }
 
     private fun setAPIUpdateData() {
@@ -85,11 +120,19 @@ class ProfileOPT_Activity : AppCompatActivity() {
     }
 
     private fun UpDateNext(response : ResponseUpdateOPT) {
-        Toast.makeText(applicationContext, "UpDateData Next!!", Toast.LENGTH_SHORT).show()
+        mPreferrences.saveUsername(username_ProfileOPT.text.toString())
+        mPreferrences.saveName_lname(name_ProfileOPT.text.toString()+" "+lname_ProfileOPT.text.toString())
+        Toast.makeText(applicationContext, "แก้ไข้เสร็จสิ้น", Toast.LENGTH_SHORT).show()
+        startActivity(
+            Intent(
+                applicationContext, ShowProFileOPT_Activity::class.java
+            )
+        )
+        finish()
     }
 
     private fun UpDateError(message: String) {
-        Toast.makeText(applicationContext, "UpDateData Error!!", Toast.LENGTH_SHORT).show()
+        Toast.makeText(applicationContext, "เกิดข้อผิดพลาด", Toast.LENGTH_SHORT).show()
     }
 
     private fun initViewShow() {
@@ -105,8 +148,7 @@ class ProfileOPT_Activity : AppCompatActivity() {
     }
     private fun setAPIShowProfile() {
         mPresenterOperator.ProfileOPTPresenterRX(mPreferrences.getID().toInt(),this::showProfileNext,this::showProfileError)
-    }
-    private fun showProfileNext(response : List<ResponseOPTProfile>) {
+    } private fun showProfileNext(response : List<ResponseOPTProfile>) {
         o_Sname = response[0].o_Sname
         o_address =response[0].o_address
         o_email = response[0].o_email
@@ -121,6 +163,7 @@ class ProfileOPT_Activity : AppCompatActivity() {
         initViewShow()
     }
     private fun showProfileError(message:String) {}
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         if (requestCode==PICK_IMAGE && resultCode== Activity.RESULT_OK){
             try {
@@ -134,7 +177,7 @@ class ProfileOPT_Activity : AppCompatActivity() {
                 options.inPreferredConfig = Bitmap.Config.ARGB_8888
                 BitmapFactory.decodeFile(imagePath, options)
                 imageName = File(imagePath)
-                Picasso.get().load(imageName).into(imageOPT_Profile)
+                Picasso.get().load(imageName!!).into(imageOPT_Profile)
             }catch (e: Exception){
                 e.printStackTrace()
             }

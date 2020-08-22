@@ -1,18 +1,17 @@
-package com.example.join_sport_app.ui.menu
+package com.example.join_sport_app.ui.menu.activity
 
 import android.app.Activity
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.location.GnssNavigationMessage
 import android.location.Location
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import androidx.core.app.ActivityCompat
 import com.example.join_sport_app.R
-import com.example.join_sport_app.ui.dashboard.Create_Activity
+import com.example.join_sport_app.ui.menu.MapUpdate_Activity
 import com.example.myapplicationproject.model.ResponseUpdateAC
 import com.example.myapplicationproject.presenter.PresenterActivity
 import com.example.myapplicationproject.rest.local.Preferrences
@@ -25,7 +24,6 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
-import kotlinx.android.synthetic.main.activity_create_.*
 import kotlinx.android.synthetic.main.activity_up_date_user_.*
 import java.util.*
 
@@ -80,7 +78,7 @@ class UpDateActivityUser_Activity : AppCompatActivity(), OnMapReadyCallback, Goo
         var user_name = intent.getStringExtra("user_name")
         var user_id = intent.getStringExtra("user_id")
         var ac_numberjoin = intent.getIntExtra("ac_numberjoin",0)
-        UserName = user_name
+        UserName = mPreferrences.getName_lname()
         UserID = user_id
         NumberJoin = ac_numberjoin
         ID = ac_id
@@ -106,7 +104,7 @@ class UpDateActivityUser_Activity : AppCompatActivity(), OnMapReadyCallback, Goo
     private fun initviewButton() {
         btn_back_toActivityUser.setOnClickListener {
             startActivity(
-                Intent(applicationContext,ActivityUser_Activity::class.java)
+                Intent(applicationContext, ActivityUser_Activity::class.java)
             )
             finish()
         }
@@ -114,11 +112,11 @@ class UpDateActivityUser_Activity : AppCompatActivity(), OnMapReadyCallback, Goo
         btn_TimeUpdateActivity.setOnClickListener { showDialogTime() }
 
         btn_MapUpdateActivity.setOnClickListener {
-            val i = Intent(applicationContext,MapUpdate_Activity::class.java)
+            val i = Intent(applicationContext, MapUpdate_Activity::class.java)
             i.putExtra("lat",lat)
             i.putExtra("long",long)
             startActivityForResult(
-                i,REQUEST_CODE
+                i, REQUEST_CODE
             )
         }
         btn_UpdateActivityUser.setOnClickListener {
@@ -131,13 +129,13 @@ class UpDateActivityUser_Activity : AppCompatActivity(), OnMapReadyCallback, Goo
         Number = number_Ac_update.text.toString().toInt()
         mActivityPresenter.UpdateDataActivityPresenterRX(ID!!,UserID,Name,spinner_type_update.selectedItemId.toString(),
             Day_update_Activity.text.toString()+"-"+Time_Activity_update.text.toString(),Number!!,NumberJoin!!,lat.toString(),
-            long.toString(),mPreferrences.getImage(),UserName,this::UpActivityNext,this::UpActivityError
+            long.toString(),UserName,this::UpActivityNext,this::UpActivityError
         )
     }
 
     private fun UpActivityNext(response : ResponseUpdateAC) {
         startActivity(
-            Intent(applicationContext,ActivityUser_Activity::class.java)
+            Intent(applicationContext, ActivityUser_Activity::class.java)
         )
         finish()
     }
@@ -146,7 +144,7 @@ class UpDateActivityUser_Activity : AppCompatActivity(), OnMapReadyCallback, Goo
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (requestCode==REQUEST_CODE&&resultCode==Activity.RESULT_OK){
+        if (requestCode== REQUEST_CODE &&resultCode==Activity.RESULT_OK){
             map.clear()
             val latdata = data!!.getStringExtra("lat")
             val longdata = data!!.getStringExtra("long")

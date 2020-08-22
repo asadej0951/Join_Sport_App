@@ -8,3 +8,6 @@ data class BodyPost(
     val p_time:String,
     val user_status:String
 )
+data class BodyImagePost(
+    val u_img:String
+)

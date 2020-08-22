@@ -73,10 +73,13 @@ class UpdateNumberActivity : AppCompatActivity() {
         tv_nameAC.setText(nameAC)
         if (typeAC.toInt() == 0){tv_typeAC.text = "บาสเกตบอล" }
         else if (typeAC.toInt() == 1){tv_typeAC.text = "ฟุตบอล"}
-        else if (typeAC.toInt() == 2){tv_typeAC.text = "ตะกร้อ"}
-        else if (typeAC.toInt() == 3){tv_typeAC.text = "วิ่ง"}
-        else if (typeAC.toInt() == 4){tv_typeAC.text = "เทนนิส"}
-        else {tv_typeAC.text = "แบดมินตัน"}
+        else if (typeAC.toInt() == 2){tv_typeAC.text = "วอลเลย์บอล"}
+        else if (typeAC.toInt() == 3){tv_typeAC.text = "ฟุตซอล"}
+        else if (typeAC.toInt() == 4){tv_typeAC.text = "ตะกร้อ"}
+        else if (typeAC.toInt() == 5){tv_typeAC.text = "วิ่ง"}
+        else if (typeAC.toInt() == 6){tv_typeAC.text = "เทนนิส"}
+        else if (typeAC.toInt() == 7){tv_typeAC.text = "แบดมินตัน"}
+        else {tv_typeAC.text = "เต้น"}
         tv_numberAC.setText("เข้าร่วมแล้ว : "+numberjoinUpdate.toString()+" / "+numberAC.toString()+" คน")
         Day_DetailActivity.setText(timeAC.toString().substring(0,10))
         Time_DetailActivity.setText(timeAC.toString().substring(11)+" น.")

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/bg"
@@ -28,209 +29,241 @@
                 android:layout_marginLeft="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/kanit"
                 android:text="จองสนามกีฬา"
                 android:textColor="#FFFFFF"
                 android:textSize="24sp" />
 
         </LinearLayout>
     </com.google.android.material.appbar.AppBarLayout>
-    <FrameLayout
-        android:background="#FFFFFF"
-        android:layout_marginTop="70dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/nameUser_JoinStadiam"
-                android:hint="ชื่อผู้จอง(ชื่อจริง)"
-                android:textColor="#000000"
-                android:textSize="18sp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-        </com.google.android.material.textfield.TextInputLayout>
-    </FrameLayout>
-    <FrameLayout
-        android:background="#FFFFFF"
-        android:layout_marginTop="145dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/Phone_JoinStadiam"
-                android:textColor="#000000"
-                android:textSize="18sp"
-                android:inputType="phone"
-                android:hint="เบอร์โทรศัพท์ติดต่อ"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-        </com.google.android.material.textfield.TextInputLayout>
-    </FrameLayout>
-    <LinearLayout
-        android:layout_marginTop="220dp"
-        android:background="#FFFFFF"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_gravity="center_vertical"
-            android:textColor="#000000"
-            android:layout_marginLeft="20dp"
-            android:textSize="18sp"
-            android:text="วันที่จอง : "
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:id="@+id/Day_JoinStadiam"
-            android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_gravity="center_vertical"
-            android:textColor="#000000"
-            android:textSize="18sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
 
-        <ImageButton
-            android:id="@+id/btn_DayJoinStadiam"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:backgroundTint="#00FFFFFF"
-            android:src="@drawable/ic_baseline_calendar_today_24"
-            android:tint="#000000" />
-    </LinearLayout>
-    <LinearLayout
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:background="#FFFFFF"
-        android:layout_marginTop="280dp"
+    <ScrollView
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:text="ช่วงเวลาที่จอง : "
-            android:textSize="18sp"
-            android:textColor="#000000"
-            android:layout_marginLeft="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
-            android:id="@+id/Time_JoinStadiam"
-            android:textColor="#000000"
-            android:textSize="18sp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+        android:layout_height="match_parent">
 
-        <ImageButton
-            android:id="@+id/btn_TimeJoinStadiam"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#001B1414"
-            android:src="@drawable/ic_baseline_access_time_24"
-            android:tint="#000000" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_marginTop="340dp"
-        android:orientation="horizontal"
-        android:gravity="center_vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <ImageButton
-            android:layout_marginLeft="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="#001B1414"
-            android:src="@drawable/ic_baseline_access_time_24"
-            android:tint="#000000" />
-    <TextView
-        android:id="@+id/Totaltime_JoinStadiam"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:text="เวลารวม"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    <TextView
-        android:id="@+id/price_JoinStadiam"
-        android:layout_marginLeft="10dp"
-        android:textColor="#000000"
-        android:textSize="20sp"
-        android:text="ราคารวม : "
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-    </LinearLayout>
-    <FrameLayout
-        android:background="#FFFFFF"
-        android:layout_marginTop="380dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/Type_JoinStadiam"
-            android:textColor="#000000"
-            android:textSize="18sp"
-            android:maxLines="3"
-            android:hint="รายละเอียดเพิ่มเติม"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </com.google.android.material.textfield.TextInputLayout>
-</FrameLayout>
-    <LinearLayout
-        android:orientation="vertical"
-        android:background="#FFFFFF"
-        android:layout_marginTop="460dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-    <TextView
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:text="เงื่อนไขและข้อกำหนดการให้บริการ หากบัญชีของคุณทำการจองสนามกีฬาและไม่มาก่อนเวลาจอง 15 นาที ทางเราจะทำการระงับบัญชีของคุณเป็นเวลา 15 วัน"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-        <CheckBox
-            android:id="@+id/checkBox_JoinStadiam"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:checked="false"
-            android:text="ยอมรับ" />
-    </LinearLayout>
-    <fragment
-        android:id="@+id/map_JoinStadiam"
-        android:layout_marginTop="550dp"
-        android:layout_marginBottom="60dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        class="com.google.android.gms.maps.SupportMapFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-    <LinearLayout
-        android:layout_marginTop="720dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <Button
-            android:id="@+id/btn_Save_JoinStadiam"
-            android:layout_marginLeft="10dp"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:background="@drawable/btn_add"
-            android:textColor="#FFFFFF"
-            android:textSize="20dp"
-            android:text="ทำการจอง"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-    </LinearLayout>
-</FrameLayout>
+            android:orientation="vertical" >
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/nameUser_JoinStadiam"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/kanit"
+                        android:hint="ชื่อผู้จอง(ชื่อจริง)"
+                        android:textColor="#000000"
+                        android:textSize="18sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF">
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/Phone_JoinStadiam"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/kanit"
+                        android:hint="เบอร์โทรศัพท์ติดต่อ"
+                        android:inputType="phone"
+                        android:textColor="#000000"
+                        android:textSize="18sp" />
+                </com.google.android.material.textfield.TextInputLayout>
+            </FrameLayout>
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="20dp"
+                    android:fontFamily="@font/kanit"
+                    android:text="วันที่จอง : "
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <TextView
+                    android:id="@+id/Day_JoinStadiam"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:fontFamily="@font/kanit"
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
+
+                <ImageButton
+                    android:id="@+id/btn_DayJoinStadiam"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:backgroundTint="#00FFFFFF"
+                    android:src="@drawable/ic_baseline_calendar_today_24"
+                    android:tint="#000000" />
+            </LinearLayout>
+            <LinearLayout
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:background="#FFFFFF"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:text="ช่วงเวลาที่จอง : "
+                    android:textSize="18sp"
+                    android:fontFamily="@font/kanit"
+                    android:textColor="#000000"
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:id="@+id/Time_JoinStadiam"
+                    android:textColor="#000000"
+                    android:fontFamily="@font/kanit"
+                    android:textSize="18sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <ImageButton
+                    android:id="@+id/btn_TimeJoinStadiam"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#001B1414"
+                    android:src="@drawable/ic_baseline_access_time_24"
+                    android:tint="#000000" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="#FFFFFF"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageButton
+                    android:layout_marginLeft="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#001B1414"
+                    android:src="@drawable/ic_baseline_access_time_24"
+                    android:tint="#000000" />
+                <TextView
+                    android:id="@+id/Totaltime_JoinStadiam"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    android:text="เวลารวม"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:id="@+id/price_JoinStadiam"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="#000000"
+                    android:textSize="20sp"
+                    android:text="ราคารวม : "
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <FrameLayout
+                android:background="#FFFFFF"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/Type_JoinStadiam"
+                        android:textColor="#000000"
+                        android:textSize="18sp"
+                        android:maxLines="3"
+                        android:fontFamily="@font/kanit"
+                        android:hint="รายละเอียดเพิ่มเติม"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"/>
+                </com.google.android.material.textfield.TextInputLayout>
+            </FrameLayout>
+            <LinearLayout
+                android:orientation="vertical"
+                android:background="#FFFFFF"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:fontFamily="@font/kanit"
+                    android:text="เงื่อนไขและข้อกำหนดการให้บริการ หากบัญชีของคุณทำการจองสนามกีฬาและไม่มาก่อนเวลาจอง 15 นาที ทางเราจะทำการระงับบัญชีของคุณเป็นเวลา 15 วัน"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <CheckBox
+                    android:id="@+id/checkBox_JoinStadiam"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginRight="20dp"
+                    android:checked="false"
+                    android:fontFamily="@font/kanit"
+                    android:text="ยอมรับ" />
+            </LinearLayout>
+            <fragment
+                android:id="@+id/map_JoinStadiam"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                class="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"/>
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/btn_Save_JoinStadiam"
+                    android:layout_marginLeft="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:background="@drawable/btn_add"
+                    android:textColor="#FFFFFF"
+                    android:fontFamily="@font/kanit"
+                    android:textSize="20dp"
+                    android:text="ทำการจอง"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

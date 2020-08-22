@@ -37,7 +37,7 @@ class User_Fragment : Fragment() {
 
     var mPresenterRegister = PresenterUser()
     lateinit var mPreferrences: Preferrences
-    private lateinit var imageName :File
+    var imageName :File? = null
     private lateinit var addImage : ImageView
     private lateinit var addImagetoDataBase:String
     private var PICK_IMAGE = 999
@@ -63,14 +63,59 @@ class User_Fragment : Fragment() {
 
         }
         root.btn_UserSave.setOnClickListener {
-            val username = root.username_User.text.toString()
-            val password = root.password_User.text.toString()
-            val passwordCheck = root.password_User2.text.toString()
-            val name = root.name_User.text.toString()
-            val lastname = root.lastname_User.text.toString()
-            val email = root.email_User.text.toString()
-            val tel = root.tel_User.text.toString()
-            setapi(username,password,name,lastname,email,tel)
+            if (imageName != null) {
+                val username = root.username_User.text.toString()
+                val password = root.password_User.text.toString()
+                val passwordCheck = root.password_User2.text.toString()
+                val name = root.name_User.text.toString()
+                val lastname = root.lastname_User.text.toString()
+                val email = root.email_User.text.toString()
+                val tel = root.tel_User.text.toString()
+                if (username != "")
+                { if (password !=""){
+                    if (passwordCheck != "") {
+                        if (password == passwordCheck) {
+                            if (name != "") {
+                                if (lastname !="") {
+                                    if (email != "") {
+                                        if (tel != "") {
+                                            setapi(username, password, name, lastname, email, tel)
+                                        }
+                                        else{
+                                            Toast.makeText(context, "กรุณากรอกเบอร์โทรศัทพ์", Toast.LENGTH_SHORT).show()
+                                        }
+                                    }
+                                    else{
+                                        Toast.makeText(context, "กรุณากรอกอีเมล", Toast.LENGTH_SHORT).show()
+                                    }
+                                }
+                                else{
+                                    Toast.makeText(context, "กรุณากรอกนามสกุล", Toast.LENGTH_SHORT).show()
+                                }
+                            }
+                            else{
+                                Toast.makeText(context, "กรุณากรอกชื่อ", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                        else{
+                            root.password_User.text?.clear()
+                            root.password_User2.text?.clear()
+                            Toast.makeText(context, "กรุณารหัสผ่านไม่ตรงกัน", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                    else{
+                        Toast.makeText(context, "กรุณายืนยันรหัสผ่าน", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                    else{Toast.makeText(context, "กรุณากรอกรหัสผ่าน", Toast.LENGTH_SHORT).show()}
+                    }
+                else{
+                    Toast.makeText(context, "กรุณากรอกชื่อผู้ใช้", Toast.LENGTH_SHORT).show()
+                }
+            }
+            else{
+                Toast.makeText(context, "กรุณาเลือกรูปภาพ", Toast.LENGTH_SHORT).show()
+            }
         }
 
     }
@@ -91,13 +136,13 @@ class User_Fragment : Fragment() {
     private fun onSuccessRegister(response : ResponseUser) {
         var u_id= response.u_id
         mPresenterRegister.UploadImageUserPresenterRX(
-            u_id,imageName
+            u_id,imageName!!
         ){if (it){
             mPreferrences = Preferrences(context!!)
             mPreferrences.saveId(u_id)
             mPreferrences.saveName_lname(name_User.text.toString()+" "+lastname_User.text.toString())
             mPreferrences.saveUsername(username_User.text.toString())
-            mPreferrences.saveImage(imageName.name)
+            mPreferrences.saveImage(imageName!!.name)
             mPreferrences.saveStatus("ผู้ใช้งานทั่วไป")
             startActivity(
                 Intent(context,MainActivity::class.java)
@@ -124,7 +169,7 @@ class User_Fragment : Fragment() {
 
                 Log.d("As5da1sda", File(imagePath).absolutePath )
                 imageName = File(imagePath)
-                Picasso.get().load(imageName).into(addImage)
+                Picasso.get().load(imageName!!).into(addImage)
             }catch (e: Exception){
                 e.printStackTrace()
             }

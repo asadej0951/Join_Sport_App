@@ -7,7 +7,7 @@
     android:background="@drawable/bg"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.menu.UpDateActivityUser_Activity">
+    tools:context=".ui.menu.activity.UpDateActivityUser_Activity">
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/frameLayout"
         android:layout_width="match_parent"
@@ -34,6 +34,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_gravity="center"
                 android:text="แก้ไขกิจกรรม"
+                android:fontFamily="@font/kanit"
                 android:textColor="#FFFFFF"
                 android:textSize="24sp" />
 
@@ -68,6 +69,7 @@
                     android:hint="ชื่อกิจกรรม"
                     android:textColor="#000000"
                     android:textSize="18sp"
+                    android:fontFamily="@font/kanit"
                     android:drawableLeft="@drawable/ic_baseline_directions_run_24"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -87,6 +89,7 @@
             <TextView
                 android:id="@+id/tv_type"
                 android:layout_marginLeft="20dp"
+                android:fontFamily="@font/kanit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
@@ -100,6 +103,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"
+                android:fontFamily="@font/kanit"
                 android:layout_gravity="center_vertical"
                 android:textSize="18sp" />
         </LinearLayout>
@@ -117,6 +121,7 @@
 
                     android:id="@+id/number_Ac_update"
                     android:hint="จำนวนคนที่ต้องการ"
+                    android:fontFamily="@font/kanit"
                     android:textColor="#000000"
                     android:textSize="18sp"
                     android:layout_width="match_parent"
@@ -140,6 +145,7 @@
                 android:layout_marginLeft="20dp"
                 android:textSize="18sp"
                 android:text="วันที่ทำกิจกรรม : "
+                android:fontFamily="@font/kanit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -149,6 +155,7 @@
                 android:layout_gravity="center_vertical"
                 android:textColor="#000000"
                 android:textSize="18sp"
+                android:fontFamily="@font/kanit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -173,6 +180,7 @@
                 android:textSize="18sp"
                 android:textColor="#000000"
                 android:layout_marginLeft="20dp"
+                android:fontFamily="@font/kanit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
             <TextView
@@ -181,6 +189,7 @@
                 android:id="@+id/Time_Activity_update"
                 android:textColor="#000000"
                 android:textSize="18sp"
+                android:fontFamily="@font/kanit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -202,6 +211,7 @@
             android:background="@drawable/btn_add"
             android:textColor="#FFFFFF"
             android:textSize="20dp"
+            android:fontFamily="@font/kanit"
             android:text="เลือกตำแหน่งที่ตั้งสนามกีฬา"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -223,6 +233,7 @@
             android:background="@drawable/btn_add"
             android:textColor="#FFFFFF"
             android:textSize="20dp"
+            android:fontFamily="@font/kanit"
             android:text="บันทึก"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>

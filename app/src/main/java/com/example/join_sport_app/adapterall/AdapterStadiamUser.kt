@@ -30,9 +30,9 @@ class AdapterStadiamUser(val ct:Context,private var mDataStadiam :ArrayList<Resp
 
     override fun onBindViewHolder(holder: ViewHolderStadiamUser, position: Int) {
 
-        Picasso.get().load(Utils.host+"/imageregister/"+mDataStadiam.get(position).o_img).into(holder.ImgOPT)
+        Picasso.get().load(Utils.host+"/imageregister/"+mDataStadiam.get(position).img).into(holder.ImgOPT)
 
-        Picasso.get().load(Utils.host+"/imageStadium/"+mDataStadiam.get(position).img).into(holder.ImgStadiam)
+        Picasso.get().load(Utils.host+"/imageStadium/"+mDataStadiam.get(position).Simg).into(holder.ImgStadiam)
         holder.nameStadiam.setText(mDataStadiam[position].s_name)
         holder.itemView.setOnClickListener {
             var i = Intent(ct,Detail_Stadiam_Activity::class.java)

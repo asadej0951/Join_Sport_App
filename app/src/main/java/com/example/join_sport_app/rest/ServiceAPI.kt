@@ -5,9 +5,7 @@ import com.example.join_sport_app.body.activity.BodyDeleteJoinActivity
 import com.example.join_sport_app.body.activity.BodyGetCheckTimeStadium
 import com.example.join_sport_app.body.admin.BodyLoginAM
 import com.example.join_sport_app.body.operator.*
-import com.example.join_sport_app.body.post.BodyComment
-import com.example.join_sport_app.body.post.BodyGetComment
-import com.example.join_sport_app.body.post.BodyPost
+import com.example.join_sport_app.body.post.*
 import com.example.join_sport_app.body.user.*
 import com.example.join_sport_app.model.*
 import com.example.join_sport_app.model.admin.ResponseAdmin
@@ -43,7 +41,10 @@ interface ServiceAPI {
     fun dogetcheckStatus(@Body body : BodyStatusJoinStadium?):Observable<List<ResponseJoinStadium>>
 
     @PUT("/updateuser/{id}")
-    fun doupdateuser(@Path("id")id: Int,@Body body :BodylnsertUser?) : Observable<List<ResponseUser>>
+    fun doupdateuser(@Path("id")id: Int,@Body body :BodylnsertUser?) : Observable<ResponseUser>
+
+    @PUT("/UpdateimageUser/{id}")
+    fun doUpdateimageUser(@Path("id") id :Int, @Body body :BodyUploadImage?) :Observable<ResponseUploadImage>
 
     //activity
     @POST("/activity")
@@ -87,6 +88,18 @@ interface ServiceAPI {
     @POST("/Comment")
     fun doComment(@Body body : BodyComment?):Observable<ResponseComment>
 
+    @PUT("/updateDataCommentImage/{id}")
+    fun updateDataCommentImage(@Path("id")id: Int,@Body body:BodyCommentImage?):Observable<ResponseComment>
+
+    @DELETE("deletePost/{id}")
+    fun  deletePost(@Path("id")id: Int) :Observable<ResponsePost>
+
+    @PUT("/updateDataPost/{id}")
+    fun updateDataPost(@Path("id")id: Int, @Body body :BodyPost?) :Observable<ResponsePost>
+
+    @PUT("/updateDataPostImage/{id}")
+    fun updateDataPostImage(@Path("id")id: Int, @Body body : BodyImagePost?) :Observable<ResponsePost>
+
     @POST("/getComment")
     fun dogetComment(@Body body :BodyGetComment?):Observable<List<ResponseComment>>
 
@@ -103,8 +116,8 @@ interface ServiceAPI {
     @POST("/uploadimageOPT")
     fun doUploadimageOPT(@Body body :BodyUploadImageOPT?) :Observable<ResponseUploadImage>
 
-    @POST("/UpdateimageOPT")
-    fun doUpdateimageOPT(@Body body :BodyUploadImageOPT?) :Observable<ResponseUploadImage>
+    @POST("/UpdateimageOPT/{id}")
+    fun doUpdateimageOPT(@Path("id") id :Int,@Body body :BodyUploadImageOPT?) :Observable<ResponseUploadImage>
 
     @GET("/imageOPT/{id}")
     fun doSelectImageOPT(@Path("id") id: Int) : Observable<List<ResponseImageOPT>>
@@ -124,6 +137,9 @@ interface ServiceAPI {
 
     @POST("/Stadium")
     fun doPostStadium(@Body body:BodyStadiam?):Observable<ResponseStadiam>
+
+    @PUT("/UpdateDataStadium/{id}")
+    fun UpdateDataStadium (@Path("id")id:Int,@Body body:BodyStadiam?):Observable<ResponseUpdateStadium>
 
     @POST("/uploadimageStadium")
     fun doUploadimageStadium(@Body body :BodyImageStadium?) :Observable<ResponseUploadImage>

@@ -42,10 +42,13 @@ class AdapterActivity(
             holder.TimeAC.text = mDataActivity.get(position).ac_time
         if (mDataActivity.get(position).ac_type.toInt() == 0){holder.typeAC.text = "บาสเกตบอล" }
         else if (mDataActivity.get(position).ac_type.toInt() == 1){holder.typeAC.text = "ฟุตบอล"}
-        else if (mDataActivity.get(position).ac_type.toInt() == 2){holder.typeAC.text = "ตะกร้อ"}
-        else if (mDataActivity.get(position).ac_type.toInt() == 3){holder.typeAC.text = "วิ่ง"}
-        else if (mDataActivity.get(position).ac_type.toInt() == 4){holder.typeAC.text = "เทนนิส"}
-        else {holder.typeAC.text = "แบดมินตัน"}
+        else if (mDataActivity.get(position).ac_type.toInt() == 2){holder.typeAC.text = "วอลเลย์บอล"}
+        else if (mDataActivity.get(position).ac_type.toInt() == 3){holder.typeAC.text = "ฟุตซอล"}
+        else if (mDataActivity.get(position).ac_type.toInt() == 4){holder.typeAC.text = "ตะกร้อ"}
+        else if (mDataActivity.get(position).ac_type.toInt() == 5){holder.typeAC.text = "วิ่ง"}
+        else if (mDataActivity.get(position).ac_type.toInt() == 6){holder.typeAC.text = "เทนนิส"}
+        else if (mDataActivity.get(position).ac_type.toInt() == 7){holder.typeAC.text = "แบดมินตัน"}
+        else {holder.typeAC.text = "เต้น"}
             holder.numberjoinAC.text = mDataActivity.get(position).ac_numberjoin.toString()
 
         holder.itemView.setOnClickListener {

@@ -38,12 +38,14 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="20dp"
             android:text="ชื่อสนามกีฬา"
+            android:fontFamily="@font/kanit"
             android:textSize="24dp" />
             </LinearLayout>
 
         <ImageView
             android:id="@+id/img_stadiam"
-            android:layout_width="match_parent"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="300dp"
             android:layout_height="120dp"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="10dp"

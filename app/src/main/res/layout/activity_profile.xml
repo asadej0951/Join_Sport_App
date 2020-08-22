@@ -24,11 +24,13 @@
                 android:background="#00FFFFFF"
                 android:src="@drawable/ic_baseline_chevron_left_24"
                 android:tint="#000000" />
+
             <TextView
                 android:id="@+id/textView12"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:fontFamily="@font/kanit_light"
                 android:text="จัดการข้อมูลส่วนตัว"
                 android:textColor="#FFFFFF"
                 android:textSize="24sp" />
@@ -83,6 +85,7 @@
                 android:id="@+id/username_Profile"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/kanit_light"
                 android:drawableLeft="@drawable/ic_baseline_account_circle_24"
                 android:hint="ID ผู้ใช้"
                 android:paddingRight="10dp"
@@ -106,6 +109,7 @@
                     android:id="@+id/password_Profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/kanit_light"
                     android:drawableLeft="@drawable/ic_baseline_vpn_key_24"
                     android:paddingLeft="10dp"
                     android:hint="รหัสผ่าน"
@@ -127,6 +131,7 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/name_Profile"
                     android:layout_width="match_parent"
+                    android:fontFamily="@font/kanit_light"
                     android:layout_height="wrap_content"
                     android:drawableLeft="@drawable/ic_baseline_account_box_24"
                     android:paddingLeft="10dp"
@@ -150,6 +155,7 @@
                     android:id="@+id/lname_Profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/kanit_light"
                     android:drawableLeft="@drawable/ic_baseline_account_box_24"
                     android:paddingLeft="10dp"
                     android:hint="นามสกุลผู้ใช้"
@@ -172,6 +178,7 @@
                     android:id="@+id/email_Profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/kanit_light"
                     android:drawableLeft="@drawable/ic_baseline_email_24"
                     android:paddingLeft="10dp"
                     android:hint="อีเมล"
@@ -194,6 +201,7 @@
                     android:id="@+id/tel_Profile"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/kanit_light"
                     android:drawableLeft="@drawable/ic_baseline_call_24"
                     android:paddingLeft="10dp"
                     android:hint="เบอร์โทรศัพท์"
@@ -202,10 +210,9 @@
             </com.google.android.material.textfield.TextInputLayout>
         </FrameLayout>
         <LinearLayout
+           android:gravity="center_horizontal"
             android:layout_marginTop="10dp"
             android:orientation="horizontal"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <Button
@@ -214,6 +221,7 @@
                 android:paddingRight="50dp"
                 android:textColor="#FFFFFF"
                 android:textSize="20sp"
+                android:fontFamily="@font/kanit_light"
                 android:text="บันทึก"
                 android:background="@drawable/btn_add"
                 android:layout_width="180dp"
@@ -222,6 +230,7 @@
                 android:id="@+id/btn_cancel_Profile"
                 android:textColor="#FFFFFF"
                 android:textSize="20dp"
+                android:fontFamily="@font/kanit_light"
                 android:text="ยกเลิก"
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/btn_add"

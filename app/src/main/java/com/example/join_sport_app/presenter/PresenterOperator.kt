@@ -138,11 +138,10 @@ class PresenterOperator {
         s_timeclose: String,
         o_id:String,
         o_user: String,
-        o_img: String,
         dataResponse:(ResponseStadiam)->Unit,
         MessageError:(String)->Unit
     ){
-        mDisposable = DataModule.myAppService.doPostStadium(BodyStadiam(s_name, s_lat, s_long,s_address, s_type,s_price,s_timeopen,s_timeclose, o_id, o_user,o_img))
+        mDisposable = DataModule.myAppService.doPostStadium(BodyStadiam(s_name, s_lat, s_long,s_address, s_type,s_price,s_timeopen,s_timeclose, o_id, o_user))
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeWith(object : DisposableObserver<ResponseStadiam>(){
@@ -154,6 +153,39 @@ class PresenterOperator {
                 override fun onError(e: Throwable) {
                     MessageError.invoke(e.message!!)
                     Log.d("PostStadiam",e.message.toString())
+                }
+
+            })
+    }
+    fun UpdateDataStadiumPresenterRX(
+        s_id: Int,
+        s_name:String,
+        s_lat:String,
+        s_long:String,
+        s_address:String,
+        s_type:String,
+        s_price:Int,
+        s_timeopen:String,
+        s_timeclose: String,
+        o_id:String,
+        o_user: String,
+        dataResponse:(ResponseUpdateStadium)->Unit,
+        MessageError:(String)->Unit
+    ){
+        mDisposable = DataModule.myAppService.UpdateDataStadium(s_id,
+            BodyStadiam(s_name, s_lat, s_long, s_address, s_type, s_price, s_timeopen, s_timeclose, o_id, o_user)
+        )
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeWith(object : DisposableObserver<ResponseUpdateStadium>(){
+                override fun onComplete() {}
+                override fun onNext(response: ResponseUpdateStadium) {
+                    Log.d("UpdateDataStadium",response.toString())
+                    dataResponse.invoke(response)
+                }
+                override fun onError(e: Throwable) {
+                    MessageError.invoke(e.message!!)
+                    Log.d("UpdateDataStadium",e.message.toString())
                 }
 
             })
@@ -231,10 +263,11 @@ class PresenterOperator {
             .subscribeWith(object : DisposableObserver<List<ResponseShowStadium>>(){
                 override fun onComplete() {}
                 override fun onNext(response: List<ResponseShowStadium>) {
-                    Log.d("messsage",response.toString())
+                    Log.d("messageImageStadium",response.toString())
                     dataResponse.invoke(response)
                 }
                 override fun onError(e: Throwable) {
+                    Log.d("messageImageStadium",e.message!!.toString())
                     MessageError.invoke(e.message!!)
                 }
 
@@ -438,6 +471,7 @@ class PresenterOperator {
             })
     }
     fun UpdateimageOPTPresenterRX(
+        imgI_id:Int,
         o_id:String,
         o_img: File,
         res:(Boolean)-> Unit
@@ -470,7 +504,7 @@ class PresenterOperator {
 
             }
         }
-        mDisposable = DataModule.myAppService.doUpdateimageOPT(BodyUploadImageOPT(UploadImage))
+        mDisposable = DataModule.myAppService.doUpdateimageOPT(imgI_id,BodyUploadImageOPT(UploadImage))
             .subscribeOn(Schedulers.io())
             .timeout(20, TimeUnit.SECONDS)
             .observeOn(AndroidSchedulers.mainThread())
@@ -479,13 +513,13 @@ class PresenterOperator {
                 override fun onNext(response: ResponseUploadImage) {
                     if (response.isSuccessful){
                         res.invoke(true)
-                        Log.d("register",response.message)
+                        Log.d("UpdateImageOPT",response.message)
                     }else{
                         res.invoke(false)
                     }
                 }
                 override fun onError(e: Throwable) {
-                    Log.d("register",e.message)
+                    Log.d("UpdateImageOPT",e.message)
                     res.invoke(false)
                 }
 

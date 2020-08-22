@@ -115,7 +115,7 @@ class Stadiam_Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMa
             .limitPickPhoto(12)
             .singlePhoto(false)
             .hintOfPick("this is pick hint")
-            .filterMimeTypes(arrayOf("image/jpeg"))
+//            .filterMimeTypes(arrayOf("image/jpeg")) ตัวกรองไฟล์รูป
             .build()
         GalleryActivity.openActivity(this@Stadiam_Activity, PICK_IMAGE_MULTIPLE, config)
     }
@@ -130,7 +130,7 @@ class Stadiam_Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMa
         var s_address = address_Stadiam.text.toString()
         var s_type = Type_Stadiam.text.toString()
         var s_price = price_Stadiam.text.toString().toInt()
-        mPresenterOperator.PostStadiamPresenterRX(s_name,s_lat,s_long,s_address,s_type,s_price,timeOpen,timeClose,o_id,o_user,mPreferrences.getImage(),
+        mPresenterOperator.PostStadiamPresenterRX(s_name,s_lat,s_long,s_address,s_type,s_price,timeOpen,timeClose,o_id,o_user,
         this::PostStadiamNext,this::PostStadiamError)
     }
 

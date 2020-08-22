@@ -45,6 +45,7 @@ class JoinStadiam_Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.
     private var Date = ""
     private var price :Int? = null
     private var T_price :Int? = null
+    lateinit var chackbox :CheckBox
     var mPresenterUser = PresenterUser()
     var mPreferrences = Preferrences(this)
     private lateinit var toDoDate:Triple<Int?,Int?,Int?>
@@ -71,7 +72,6 @@ class JoinStadiam_Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.
         var s_name = intent.getStringExtra("s_name")
         var s_lat = intent.getStringExtra("s_lat")
         var s_long = intent.getStringExtra("s_long")
-        Toast.makeText(applicationContext, s_id.toString()+" / "+o_id.toString() , Toast.LENGTH_SHORT).show()
         lat = s_lat.toDouble()
         loan = s_long.toDouble()
         name =s_name
@@ -79,7 +79,33 @@ class JoinStadiam_Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.
             finish()
         }
         btn_Save_JoinStadiam.setOnClickListener {
-               setAPIJoinStadiam(s_id.toString(), s_name,o_id.toString())
+            chackbox = findViewById(R.id.checkBox_JoinStadiam)
+            if (chackbox.isChecked) {
+                if (nameUser_JoinStadiam.text.toString() != "") {
+                    if (Phone_JoinStadiam.text.toString() != "") {
+                        if (Day_JoinStadiam.text.toString() !="") {
+                            if (Time_JoinStadiam.text.toString() !="") {
+                                setAPIJoinStadiam(s_id.toString(), s_name, o_id.toString())
+                            }
+                            else{
+                                Toast.makeText(applicationContext, "กรุณาเลือกช่วงเวลาจอง", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                        else{
+                            Toast.makeText(applicationContext, "กรุณาเลือกวันที่สำหรับการจอง", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                    else{
+                        Toast.makeText(applicationContext, "กรุณาใส่เบอร์โทรศัพท์", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                else{
+                    Toast.makeText(applicationContext, "กรุณาใส่ชื่อและนามสกุล", Toast.LENGTH_SHORT).show()
+                }
+            }
+            else{
+                Toast.makeText(applicationContext, "กรุณายอมรับข้อตกลง", Toast.LENGTH_SHORT).show()
+            }
            }
 
         btn_TimeJoinStadiam.setOnClickListener {
@@ -90,16 +116,6 @@ class JoinStadiam_Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.
         }
     }
 
-    private fun ShowMessage() {
-        AlertDialog.Builder(this@JoinStadiam_Activity).apply {
-            setTitle("ข้อผิดพลาด")
-            setMessage("ผู้ใช้ไม่ยอมรับเงื่อนไขใช่หรือไม่? \nกรุณากดยอมรับเงื่อนไข")
-            setPositiveButton("ตกลง"){
-                dialog, which ->
-            }
-            show()
-        }
-    }
 
     private fun setAPIJoinStadiam(s_Id: String, s_Name: String,o_Id: String) {
         mPresenterUser.JoinStadiamPresenterRX(mPreferrences.getID(),s_Id,o_Id,
@@ -156,10 +172,14 @@ class JoinStadiam_Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.
         val hour = calendar.get(Calendar.HOUR_OF_DAY)
         val min = calendar.get(Calendar.MINUTE)
         val listener = TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
-            val dateStr = "$hourOfDay:$minute"
+            var HH = ""
+            var MM = ""
+            if (hourOfDay.toString().length==1){HH ="0${hourOfDay}"}else{HH ="${hourOfDay}"}
+            if (minute.toString().length==1){MM ="0${minute}"}else{MM ="${minute}"}
+            val p_time = "${HH}:${MM}"
             hh = hourOfDay
             mm = minute
-            timein = dateStr
+            timein = p_time
             TimeOut()
         }
         val dialog = TimePickerDialog(this@JoinStadiam_Activity, AlertDialog.THEME_HOLO_DARK,listener,hour,min,false)
@@ -171,19 +191,36 @@ class JoinStadiam_Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.
         val hour = calendar.get(Calendar.HOUR_OF_DAY)
         var min = calendar.get(Calendar.MINUTE)
         val listener = TimePickerDialog.OnTimeSetListener { view, hourOfDay, minute ->
-            val dateStr = "$hourOfDay:$minute"
-            timeout = dateStr
+            var HH = ""
+            var MM = ""
+            if (hourOfDay.toString().length==1){HH ="0${hourOfDay}"}else{HH ="${hourOfDay}"}
+            if (minute.toString().length==1){MM ="0${minute}"}else{MM ="${minute}"}
+            val p_time = "${HH}:${MM}"
+            timeout = p_time
             var total_time =""
             var PH = price
             var PM = price
-            var Time_H = hourOfDay- hh!!
+            var Time_M :Int? = null
+            var Time_H :Int? = null
+            if (hourOfDay >= hh!!){Time_H = hourOfDay- hh!!}
+            else{Time_H = hh!! - hourOfDay}
             var price_H = PH!!*Time_H
             var price_M = 0
-            var Time_M = minute- mm!!
-            if (Time_M >= 15&& Time_M < 45){
-                price_M = PM!!/2
+
+            if(minute>= mm!!){
+                Time_M = minute- mm!!
+                if (Time_M!! >= 15&& Time_M < 45){
+                    price_M = PM!!/2
+                }
+                else if (Time_M >=45){ price_M = PM!!}
             }
-            else if (Time_M >=45){ price_M = PM!!}
+            else{
+                Time_M = mm!! - minute
+                if (Time_M!! >= 15&& Time_M < 45){
+                    price_M = PM!!/2
+                }
+                else if (Time_M >=45){ price_M = PM!!}
+            }
 
             if (Time_M!=0){
                 total_time = Time_H.toString()+" ชั่วโมง "+Time_M.toString()+" นาที"
@@ -207,7 +244,14 @@ class JoinStadiam_Activity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.
         toDoDate = Triple(null,null,null)
         val listener = DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
             toDoDate = Triple(dayOfMonth,month+1,year)
-            Date = "${toDoDate.first}/${toDoDate.second}/${toDoDate.third}"
+            var Day :String
+            var MonTh :String
+            var YeaR:String
+            if (toDoDate.first.toString().length==1){ Day = "0${toDoDate.first}" } else{Day = "${toDoDate.first}"}
+            if (toDoDate.second.toString().length==1){ MonTh = "0${toDoDate.second}" } else{MonTh = "${toDoDate.second}"}
+            if (toDoDate.third.toString().length==1){ YeaR = "0${toDoDate.third}" } else{YeaR = "${toDoDate.third}"}
+
+            Date = "${Day}/${MonTh}/${YeaR}"
             Day_JoinStadiam.setText(Date)
         }
         val dialog = DatePickerDialog(this,AlertDialog.THEME_HOLO_DARK,listener,year,month,day)

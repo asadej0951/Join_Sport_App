@@ -33,6 +33,7 @@
                     android:layout_marginLeft="20dp"
                     android:layout_marginRight="20dp"
                     android:text="ชื่อสนามกีฬา"
+                    android:fontFamily="@font/kanit"
                     android:textAlignment="center"
                     android:textColor="#000000"
                     android:textSize="24dp" />
@@ -58,6 +59,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="DD/MM/YYYY"
+                    android:fontFamily="@font/kanit"
                     android:textColor="#000000"
                     android:textSize="18sp" />
 
@@ -83,6 +85,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="HH:MM - HH:MM"
+                    android:fontFamily="@font/kanit"
                     android:textColor="#000000"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -107,6 +110,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="ค่าบริการ : "
+                    android:fontFamily="@font/kanit"
                     android:textColor="#000000"
                     android:textSize="18sp" />
             </LinearLayout>
@@ -131,6 +135,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="สถานะ : "
+                    android:fontFamily="@font/kanit"
                     android:textColor="#000000"
                     android:textSize="18sp" />
 
@@ -139,6 +144,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="รออนุมัติ"
+                    android:fontFamily="@font/kanit"
                     android:textColor="#000000"
                     android:textSize="18sp" />
             </LinearLayout>

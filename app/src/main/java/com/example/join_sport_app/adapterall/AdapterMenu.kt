@@ -3,7 +3,6 @@ package com.example.join_sport_app.adapterall
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,13 +12,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.join_sport_app.R
 import com.example.join_sport_app.model.ResponterMenu
 import com.example.join_sport_app.ui.login.LoginActivity
-import com.example.join_sport_app.ui.menu.ActivityUser_Activity
+import com.example.join_sport_app.ui.menu.ShowProfileActivity
+import com.example.join_sport_app.ui.menu.activity.ActivityUser_Activity
 import com.example.join_sport_app.ui.menu.Check_Status_JoinStadiumActivity
 import com.example.join_sport_app.ui.menu.Post_ProfileActivity
-import com.example.join_sport_app.ui.menu.ProfileActivity
 import com.example.join_sport_app.uioperator.menu.Check_JoinStadiam_Activity
 import com.example.join_sport_app.uioperator.menu.Manage_StadiumActivity
-import com.example.join_sport_app.uioperator.menu.ProfileOPT_Activity
+import com.example.join_sport_app.uioperator.menu.ShowProFileOPT_Activity
 import com.example.myapplicationproject.rest.local.Preferrences
 
 class AdapterMenu (val ct:Context, private var mDataMenu :ArrayList<ResponterMenu>):RecyclerView.Adapter<ViewHolberMenu>() {
@@ -42,11 +41,11 @@ class AdapterMenu (val ct:Context, private var mDataMenu :ArrayList<ResponterMen
         holder.itemView.setOnClickListener {
             mPreferrences = Preferrences(ct)
             if (mDataMenu[position].data == "ข้อมูลส่วนตัว"&&mPreferrences.getstatus() =="ผู้ใช้งานทั่วไป"){
-                val i =Intent(ct, ProfileActivity::class.java)
+                val i =Intent(ct, ShowProfileActivity::class.java)
                 ct.startActivity(i)
             }
             else if (mDataMenu[position].data == "ข้อมูลส่วนตัว"&&mPreferrences.getstatus() =="ผู้ประกอบการ"){
-                val i =Intent(ct, ProfileOPT_Activity::class.java)
+                val i =Intent(ct, ShowProFileOPT_Activity::class.java)
                 ct.startActivity(i)
             }
             else if (mDataMenu[position].data == "กิจกรรม"){

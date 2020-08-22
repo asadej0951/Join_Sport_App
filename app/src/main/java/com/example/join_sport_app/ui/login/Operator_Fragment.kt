@@ -34,7 +34,7 @@ import java.lang.Exception
 class Operator_Fragment : Fragment() {
 
     var mPresenterOperator = PresenterOperator()
-    private lateinit var imageName :File
+    var imageName :File? = null
     private lateinit var addImage :ImageView
     lateinit var mPreferrences: Preferrences
     private var PICK_IMAGE = 999
@@ -58,16 +58,84 @@ class Operator_Fragment : Fragment() {
         }
 
         view.btn_registerOPT.setOnClickListener {
-            var username = ET_usernameOPT.text.toString()
-            var password =ET_passwordOPT.text.toString()
-            var name = ET_nameOPT.text.toString()
-            var lname = ET_lnameOPT.text.toString()
-            var email = ET_emailOTP.text.toString()
-            var tel = ET_telOTP.text.toString()
-            var Sname = ET_SnameOPT.text.toString()
-            var address = ET_addressOPT.text.toString()
-            var o_status = "ผู้ประกอบการ"
-            setRegisterOPT(username,password,name,lname,email,tel,Sname,address,o_status)
+            if (imageName != null) {
+                var username = ET_usernameOPT.text.toString()
+                var password = ET_passwordOPT.text.toString()
+                val checkPassword = password_OPT2.text.toString()
+                var name = ET_nameOPT.text.toString()
+                var lname = ET_lnameOPT.text.toString()
+                var email = ET_emailOTP.text.toString()
+                var tel = ET_telOTP.text.toString()
+                var Sname = ET_SnameOPT.text.toString()
+                var address = ET_addressOPT.text.toString()
+                var o_status = "ผู้ประกอบการ"
+                if (username!="") {
+                    if (password !="") {
+                        if (checkPassword != "") {
+                            if (password == checkPassword) {
+                                if (name !="") {
+                                    if ( lname !="") {
+                                        if (email != "") {
+                                            if (tel != "") {
+                                                if (Sname !="") {
+                                                    if (address !="") {
+                                                        setRegisterOPT(
+                                                            username,
+                                                            password,
+                                                            name,
+                                                            lname,
+                                                            email,
+                                                            tel,
+                                                            Sname,
+                                                            address,
+                                                            o_status
+                                                        )
+                                                    }
+                                                    else{
+                                                        Toast.makeText(context, "กรุณากรอกที่อยู่", Toast.LENGTH_SHORT).show()
+                                                    }
+                                                }
+                                                else{
+                                                    Toast.makeText(context, "กรุณากรอกชท่อสนามกีฬา", Toast.LENGTH_SHORT).show()
+                                                }
+                                            }
+                                            else{
+                                                Toast.makeText(context, "กรุณากรอกเบอร์โทรศัพท์", Toast.LENGTH_SHORT).show()
+                                            }
+                                        }
+                                        else{
+                                            Toast.makeText(context, "กรุณากรอกอีเมล", Toast.LENGTH_SHORT).show()
+                                        }
+                                    }
+                                    else{
+                                        Toast.makeText(context, "กรุณากรอกนามสกุล", Toast.LENGTH_SHORT).show()
+                                    }
+                                }
+                                else{
+                                    Toast.makeText(context, "กรุณากรอกชื่อ", Toast.LENGTH_SHORT).show()
+                                }
+                            }
+                            else{
+                                ET_passwordOPT.text?.clear()
+                                password_OPT2.text?.clear()
+                                Toast.makeText(context, "กรอกรหัสผ่านไม่ตรงกัน", Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                        else{
+                            Toast.makeText(context, "กรุณากรอกยืนยันรหัสผ่าน", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                    else{
+                        Toast.makeText(context, "กรุณากรอกรหัสผ่าน", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                else{
+                    Toast.makeText(context, "กรุณากรอกชื่อผู้ใช้", Toast.LENGTH_SHORT).show()
+                }
+            }
+            else{
+                Toast.makeText(context, "กรุณาเลือกรูปภาพ", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
@@ -90,13 +158,13 @@ class Operator_Fragment : Fragment() {
 
     private fun RegisterOPTNext(responseOperator: ResponseOperator) {
         val o_id = responseOperator.o_id
-        mPresenterOperator.UploadImageOPTPresenterRX(o_id.toString(),imageName){
+        mPresenterOperator.UploadImageOPTPresenterRX(o_id.toString(),imageName!!){
             if (it){
                 mPreferrences = Preferrences(context!!)
                 mPreferrences.saveStatus("ผู้ประกอบการ")
                 mPreferrences.saveUsername(ET_usernameOPT.text.toString())
                 mPreferrences.saveName_lname(ET_nameOPT.text.toString()+" "+ET_lnameOPT.text.toString())
-                mPreferrences.saveImage(imageName.name)
+                mPreferrences.saveImage(imageName!!.name)
                 startActivity(
                     Intent(context,MainActivityOperator::class.java)
                 )
@@ -123,7 +191,7 @@ class Operator_Fragment : Fragment() {
 
                 Log.d("As5da1sda",File(imagePath).absolutePath )
                 imageName = File(imagePath)
-                Picasso.get().load(imageName).into(addImage)
+                Picasso.get().load(imageName!!).into(addImage)
             }catch (e:Exception){
                 e.printStackTrace()
             }

@@ -103,7 +103,15 @@ class Home_OperatorFragment : Fragment() {
         val day = calendar.get(Calendar.DAY_OF_MONTH)
         val hour = calendar.get(Calendar.HOUR_OF_DAY)
         val min = calendar.get(Calendar.MINUTE)
-        val p_time = "${day}/${month}/${year} - ${hour}:${min}"
+        var DD =""
+        var Mon = ""
+        var HH = ""
+        var MM = ""
+        if (day.toString().length ==1){DD = "0${day}"}else{DD = "${day}"}
+        if (month.toString().length ==1){Mon = "0${month}"}else{Mon = "${month}"}
+        if (hour.toString().length==1){HH ="0${hour}"}else{HH ="${hour}"}
+        if (min.toString().length==1){MM ="0${min}"}else{MM ="${min}"}
+        val p_time = "${DD}/${Mon}/${year} - ${HH}:${MM}"
         val u_img = mPreferrences.getImage()
         mPresenterPost.PostPresenterRX(mPreferrences.getID(),mPreferrences.getName_lname(),u_img,message,p_time,"ผู้ประกอบการ",this::PostNext,this::PostError)
     }

@@ -9,6 +9,5 @@ data class BodyInsertActivity (
     val ac_numberjoin :Int,
     val ac_lat :String,
     val ac_long :String,
-    val user_name:String,
-    val u_img:String
+    val user_name:String
 )

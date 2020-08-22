@@ -30,11 +30,10 @@ class PresenterActivity {
         ac_lat :String,
         ac_long :String,
         user_name:String,
-        u_img:String,
         dataResponse:(ResponseActivity)->Unit,
         MessageError:(String)->Unit
     ){
-        mDisposable = DataModule.myAppService.doCreate(BodyInsertActivity(user_id, ac_name, ac_type, ac_time, ac_number, ac_numberjoin, ac_lat, ac_long,user_name,u_img))
+        mDisposable = DataModule.myAppService.doCreate(BodyInsertActivity(user_id, ac_name, ac_type, ac_time, ac_number, ac_numberjoin, ac_lat, ac_long,user_name))
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeWith(object : DisposableObserver<ResponseActivity>(){
@@ -85,7 +84,7 @@ class PresenterActivity {
         dataResponse:(ResponseUpdateAC)->Unit,
         MessageError:(String)->Unit
     ){
-        mDisposable = DataModule.myAppService.doUpdatenumberjoin(id,BodyInsertActivity(user_id, ac_name, ac_type, ac_time, ac_number, ac_numberjoin, ac_lat, ac_long,user_name,u_img))
+        mDisposable = DataModule.myAppService.doUpdatenumberjoin(id,BodyInsertActivity(user_id, ac_name, ac_type, ac_time, ac_number, ac_numberjoin, ac_lat, ac_long,user_name))
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeWith(object : DisposableObserver<ResponseUpdateAC>(){
@@ -223,11 +222,10 @@ class PresenterActivity {
         ac_lat :String,
         ac_long :String,
         user_name: String,
-        u_img: String,
         dataResponse:(ResponseUpdateAC)->Unit,
         MessageError:(String)->Unit
     ){
-        mDisposable = DataModule.myAppService.doUpdateDataActivity(id,BodyInsertActivity(user_id, ac_name, ac_type, ac_time, ac_number, ac_numberjoin, ac_lat, ac_long,user_name,u_img))
+        mDisposable = DataModule.myAppService.doUpdateDataActivity(id,BodyInsertActivity(user_id, ac_name, ac_type, ac_time, ac_number, ac_numberjoin, ac_lat, ac_long,user_name))
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeWith(object : DisposableObserver<ResponseUpdateAC>(){

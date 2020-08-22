@@ -10,6 +10,5 @@ data class BodyStadiam (
     val s_timeopen:String,
     val s_timeclose:String,
     val o_id:String,
-    val o_user:String,
-    val o_img :String
+    val o_user:String
 )

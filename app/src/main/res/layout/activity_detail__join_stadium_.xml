@@ -29,6 +29,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:fontFamily="@font/kanit"
                 android:text="รายละเอียดการจองสนามกีฬา"
                 android:textColor="#FFFFFF"
                 android:textSize="24sp" />
@@ -73,6 +74,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:text="ชื่อสนามกีฬา"
+                    android:fontFamily="@font/kanit"
                     android:textAlignment="center"
                     android:textColor="#000000"
                     android:textSize="24dp" />
@@ -96,6 +98,7 @@
                     android:textColor="#000000"
                     android:textSize="18sp"
                     android:text="ชื่อผู้จองสนามกีฬา"
+                    android:fontFamily="@font/kanit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
@@ -118,6 +121,7 @@
                     android:textColor="#000000"
                     android:textSize="18sp"
                     android:text="เบอร์โทรศัพท์"
+                    android:fontFamily="@font/kanit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
@@ -141,6 +145,7 @@
                     android:textColor="#000000"
                     android:textSize="18sp"
                     android:text="DD/MM/YYYY"
+                    android:fontFamily="@font/kanit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
@@ -165,6 +170,7 @@
                     android:textColor="#000000"
                     android:textSize="18sp"
                     android:text="HH:MM - HH:MM"
+                    android:fontFamily="@font/kanit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
@@ -187,6 +193,7 @@
                     android:textColor="#000000"
                     android:textSize="18sp"
                     android:text="สถานะ : "
+                    android:fontFamily="@font/kanit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
@@ -209,6 +216,7 @@
                 android:textColor="#000000"
                 android:textSize="18sp"
                 android:text="ราคาค่าบริการที่ต้องจ่าย"
+                android:fontFamily="@font/kanit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
@@ -232,6 +240,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="รายละเอียดเพิ่มเติม :"
+                    android:fontFamily="@font/kanit"
                     android:textAlignment="center"
                     android:textColor="#000000"
                     android:textSize="18sp" />
@@ -254,6 +263,7 @@
                     android:textColor="#000000"
                     android:textSize="18sp"
                     android:text="สถานะ : "
+                    android:fontFamily="@font/kanit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
 
@@ -262,6 +272,7 @@
                     android:textColor="#000000"
                     android:textSize="18sp"
                     android:text="รออนุมัติ"
+                    android:fontFamily="@font/kanit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"/>
             </LinearLayout>
@@ -284,10 +295,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingRight="10dp"
+                        android:fontFamily="@font/kanit"
                         android:text="อนุมัติ" />
 
                     <RadioButton
                         android:id="@+id/rb_NoOkay"
+                        android:fontFamily="@font/kanit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="ไม่อนุมัติ" />
@@ -305,6 +318,7 @@
                 <Button
                     android:id="@+id/save_DetailStadium"
                     android:text="บันทึก"
+                    android:fontFamily="@font/kanit"
                     android:textColor="#FFFFFF"
                     android:textSize="20sp"
                     android:paddingLeft="50dp"

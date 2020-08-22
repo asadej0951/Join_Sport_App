@@ -211,21 +211,21 @@ class PresenterUser{
         u_email: String,
         u_tel: String,
         u_status: String,
-        dataResponse:(List<ResponseUser>)->Unit,
+        dataResponse:(ResponseUser)->Unit,
         MessageError:(String)->Unit
     ){
         mDisposable = DataModule.myAppService.doupdateuser(user_id,BodylnsertUser(u_user, u_pass, u_name, u_lname, u_email, u_tel, u_status))
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribeWith(object : DisposableObserver<List<ResponseUser>>(){
+            .subscribeWith(object : DisposableObserver<ResponseUser>(){
                 override fun onComplete() {}
-                override fun onNext(responseLogin: List<ResponseUser>) {
-                    Log.d("messsage",responseLogin.toString())
+                override fun onNext(responseLogin: ResponseUser) {
+                    Log.d("Updatemesssage",responseLogin.toString())
                     dataResponse.invoke(responseLogin)
                 }
                 override fun onError(e: Throwable) {
                     MessageError.invoke(e.message!!)
-                    Log.d("messsage",e.message.toString())
+                    Log.d("Updatemesssage",e.message.toString())
                 }
 
             })
@@ -302,6 +302,62 @@ class PresenterUser{
                 override fun onError(e: Throwable) {
                     Log.d("getcheckStadium",e.message.toString())
                     MessageError.invoke(e.message!!)
+                }
+
+            })
+    }
+    fun UPDateImageUserPresenterRX(
+        imgU_id:Int,
+        u_id:String ,
+        u_img: File,
+        res:(Boolean)-> Unit
+    ){
+        val encodedImagePic1: String
+        var UploadImage = ArrayList<BodyUploadImage.Data>()
+
+        if (u_img.absolutePath != "") {
+            val myBitmap = BitmapFactory.decodeFile(u_img.absolutePath)
+
+            if (myBitmap != null) {
+                val byteArrayOutputStream =
+                    ByteArrayOutputStream()
+                myBitmap.compress(
+                    Bitmap.CompressFormat.JPEG,
+                    70,
+                    byteArrayOutputStream
+                )
+                val byteArrayImage =
+                    byteArrayOutputStream.toByteArray()
+                encodedImagePic1 = Base64.encodeToString(
+                    byteArrayImage,
+                    Base64.DEFAULT
+                )
+                val uploadData = BodyUploadImage.Data(
+                    u_id,u_img.name,"data:image/jpeg;base64,$encodedImagePic1"
+                )
+                UploadImage.add(uploadData)
+
+            }
+        }
+        mDisposable = DataModule.myAppService.doUpdateimageUser(imgU_id,
+            BodyUploadImage(UploadImage)
+        )
+            .subscribeOn(Schedulers.io())
+            .timeout(20, TimeUnit.SECONDS)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeWith(object : DisposableObserver<ResponseUploadImage>(){
+                override fun onComplete() {}
+                override fun onNext(response: ResponseUploadImage) {
+                    if (response.isSuccessful){
+                        res.invoke(true)
+                        Log.d("Updatemesssage",response.message)
+                    }else{
+                        res.invoke(false)
+                    }
+                }
+                override fun onError(e: Throwable) {
+                    Log.d("Updatemesssage",e.message)
+                    res.invoke(false)
                 }
 
             })

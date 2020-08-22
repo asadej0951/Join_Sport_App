@@ -29,6 +29,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="ที่ตั้งสนามกีฬา"
+                android:fontFamily="@font/kanit"
                 android:textColor="#FFFFFF"
                 android:textSize="24sp" />
 

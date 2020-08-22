@@ -71,16 +71,6 @@ class Detail_Stadiam_Activity : AppCompatActivity() {
     }
 
     private fun initview_Show() {
-        val calendar = Calendar.getInstance()
-        val year = calendar.get(Calendar.YEAR)
-        val month = calendar.get(Calendar.MONTH)
-        val day = calendar.get(Calendar.DAY_OF_MONTH)
-        val Date = "${day}/${month+1}/${year}"
-        DateListJoin = Date
-        if (DateListJoin ==Date){
-            time_ListJoinStadiam.setText("เวลาที่ถูกจองแล้ว : วันนี้")
-            setAPIShowTime(ID)
-        }
 
         var s_name = intent.getStringExtra("s_name")
         var s_img = intent.getStringExtra("s_img")
@@ -91,6 +81,25 @@ class Detail_Stadiam_Activity : AppCompatActivity() {
         var s_timeclose = intent.getStringExtra("s_timeclose")
         var s_id = intent.getIntExtra("s_id",0)
         ID = s_id.toString()
+
+        val calendar = Calendar.getInstance()
+        val year = calendar.get(Calendar.YEAR)
+        val month = calendar.get(Calendar.MONTH)
+        val day = calendar.get(Calendar.DAY_OF_MONTH)
+        var Day :String
+        var MON = month+1
+        var MonTh :String
+        var YeaR:String
+        if (day.toString().length==1){ Day = "0${day}" } else{Day = "${day}"}
+        if (MON.toString().length==1){ MonTh = "0${MON}" } else{MonTh = "${MON}"}
+        if (year.toString().length==1){ YeaR = "0${year}" } else{YeaR = "${year}"}
+        val Date = "${Day}/${MonTh}/${YeaR}"
+        DateListJoin = Date
+        if (DateListJoin ==Date){
+            time_ListJoinStadiam.setText("เวลาที่ถูกจองแล้ว : วันนี้")
+            setAPIShowTime(ID)
+        }
+
         setAPIShowImage()
         nameStadiam_Detail.setText("สนามกีฬา : "+s_name)
         address_Detail.setText("ที่อยู่ : "+s_address)
@@ -138,11 +147,12 @@ class Detail_Stadiam_Activity : AppCompatActivity() {
         Recycler_JoinStadiam.apply {
             layoutManager = LinearLayoutManager(context,LinearLayoutManager.HORIZONTAL,false)
             adapter = mAdapterShowTime
-            mAdapterShowTime.notifyDataSetChanged()
         }
+        mAdapterShowTime.notifyDataSetChanged()
     }
 
     private fun ShowTimeError( message :String) {
+
     }
     private fun initview_Btn() {
         btn_back_Detail.setOnClickListener {
@@ -188,8 +198,19 @@ class Detail_Stadiam_Activity : AppCompatActivity() {
         toDoDate = Triple(null,null,null)
         val listener = DatePickerDialog.OnDateSetListener { view, year, month, dayOfMonth ->
             toDoDate = Triple(dayOfMonth,month+1,year)
-            DateListJoin = "${toDoDate.first}/${toDoDate.second}/${toDoDate.third}"
-            mResponseJoinStadium.clear()
+            var Day :String
+            var MonTh :String
+            var YeaR:String
+            if (toDoDate.first.toString().length==1){ Day = "0${toDoDate.first}" } else{Day = "${toDoDate.first}"}
+            if (toDoDate.second.toString().length==1){ MonTh = "0${toDoDate.second}" } else{MonTh = "${toDoDate.second}"}
+            if (toDoDate.third.toString().length==1){ YeaR = "0${toDoDate.third}" } else{YeaR = "${toDoDate.third}"}
+
+            DateListJoin = "${Day}/${MonTh}/${YeaR}"
+
+            mAdapterShowTime= AdapterShowTime(this,mResponseJoinStadium)
+                mResponseJoinStadium.clear()
+                mAdapterShowTime.notifyDataSetChanged()
+
             time_ListJoinStadiam.setText("เวลาที่ถูกจองแล้ว : "+DateListJoin)
             setAPIShowTime(ID)
         }
@@ -208,6 +229,7 @@ class Detail_Stadiam_Activity : AppCompatActivity() {
                 setTextColor(Color.parseColor("#00CCFF"))
             }
             findViewById<Button>(R.id.btn_JoinStadiam).apply {
+                setBackgroundColor(Color.parseColor("#DCDCDC"))
                 isClickable = false
             }
         }

@@ -8,10 +8,13 @@
     <string-array name="type">
         <item>บาสเกตบอล</item>
         <item>ฟุตบอล</item>
+        <item>วอลเลย์บอล</item>
+        <item>ฟุตซอล</item>
         <item>ตะกร้อ</item>
         <item>วิ่ง</item>
         <item>เทนนิส</item>
         <item>แบดมินตัน</item>
+        <item>เต้น</item>
     </string-array>
 
     <!-- TODO: Remove or change this placeholder text -->

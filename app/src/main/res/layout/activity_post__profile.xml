@@ -29,6 +29,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_gravity="center"
                 android:text="จัดการโพสต์ข้อความ"
+                android:fontFamily="@font/kanit"
                 android:textColor="#FFFFFF"
                 android:textSize="24sp" />
             <ImageView
@@ -47,13 +48,13 @@
         android:orientation="vertical" >
 
         <LinearLayout
-            android:background="#FFFFFF"
+            android:background="@drawable/btn_click"
             android:orientation="horizontal"
             android:gravity="center_vertical"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/img_user_PostProfile"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
@@ -82,6 +83,7 @@
                     <TextView
                         android:id="@+id/tv_username_PostProfile"
                         android:text="ชื่อผู้ใช้"
+                        android:fontFamily="@font/kanit"
                         android:textColor="#000000"
                         android:textSize="24dp"
                         android:layout_width="wrap_content"
@@ -101,6 +103,7 @@
                     <TextView
                         android:id="@+id/ID_user_PostProfile"
                         android:text="ID ผู้ใช้"
+                        android:fontFamily="@font/kanit"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"/>
 

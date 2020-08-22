@@ -1,22 +1,29 @@
 package com.example.join_sport_app.adapterall.adaptermenudata
 
+import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
 import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.join_sport_app.R
 import com.example.join_sport_app.adapterall.ViewHolderPost
 import com.example.join_sport_app.model.ResponsePost
+import com.example.join_sport_app.presenter.PresenterPost
 import com.example.join_sport_app.rest.Utils
+import com.example.join_sport_app.ui.menu.Post_ProfileActivity
+import com.example.join_sport_app.ui.menu.Update_Post_Activity
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.activity_post__profile.*
 
 class AdapterPostProfile (val ct : Context, private var mDataPost: ArrayList<ResponsePost>):RecyclerView.Adapter<ViewHolderPostProfile>(){
+    var mPresenterPost = PresenterPost()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderPostProfile {
         return ViewHolderPostProfile(
             LayoutInflater.from(parent.context).inflate(
@@ -43,8 +50,15 @@ class AdapterPostProfile (val ct : Context, private var mDataPost: ArrayList<Res
                     _,which ->
                 when(which){
                     0->{
+                        val i = Intent(ct,Update_Post_Activity::class.java)
+                        i.putExtra("p_id",mDataPost[position].p_id)
+                        i.putExtra("p_message",mDataPost[position].p_message)
+                        ct.startActivity(i)
+                        (ct as Activity).finish()
                     }
                     1->{
+                        DeleteAPI(mDataPost[position].p_id)
+                        (ct as Activity).finish()
                     }
                 }
             }
@@ -52,6 +66,24 @@ class AdapterPostProfile (val ct : Context, private var mDataPost: ArrayList<Res
             true
         }
     }
+    private fun DeleteAPI(PID:Int){
+        mPresenterPost.deletePostPresenterRX(PID,this::DeleteNext,this::DeleteError)
+    }
+
+    private fun DeleteNext(responsePost: ResponsePost) {
+        Toast.makeText(ct, "ลบเสร็จสิ้น", Toast.LENGTH_SHORT).show()
+        ct.startActivity(
+            Intent(ct,Post_ProfileActivity::class.java)
+        )
+    }
+
+    private fun DeleteError(message:String) {
+        Toast.makeText(ct, "ลบไม่สำเร็จ", Toast.LENGTH_SHORT).show()
+        ct.startActivity(
+            Intent(ct,Post_ProfileActivity::class.java)
+        )
+    }
+
 }
 
 class ViewHolderPostProfile(item:View):RecyclerView.ViewHolder(item){

@@ -49,6 +49,7 @@
                 android:layout_height="wrap_content">
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ET_usernameOPT"
+                    android:fontFamily="@font/kanit"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:textSize="18sp"
@@ -74,6 +75,7 @@
             <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ET_passwordOPT"
                     android:layout_width="match_parent"
+                android:fontFamily="@font/kanit"
                     android:layout_height="match_parent"
                     android:layout_marginTop="10dp"
                 android:textSize="18sp"
@@ -99,6 +101,7 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/password_OPT2"
                         android:layout_width="match_parent"
+                        android:fontFamily="@font/kanit"
                         android:layout_height="match_parent"
                         android:textSize="18sp"
                         android:textColor="#000000"
@@ -123,6 +126,7 @@
             <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ET_nameOPT"
                     android:layout_width="match_parent"
+                android:fontFamily="@font/kanit"
                     android:layout_height="match_parent"
                     android:layout_marginTop="10dp"
                 android:textSize="18sp"
@@ -148,6 +152,7 @@
             <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ET_lnameOPT"
                     android:layout_width="match_parent"
+                android:fontFamily="@font/kanit"
                     android:layout_height="match_parent"
                     android:layout_marginTop="10dp"
                 android:textSize="18sp"
@@ -173,6 +178,7 @@
             <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ET_emailOTP"
                     android:layout_width="match_parent"
+                android:fontFamily="@font/kanit"
                     android:layout_height="match_parent"
                     android:layout_marginTop="10dp"
                 android:textSize="18sp"
@@ -198,6 +204,7 @@
             <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ET_telOTP"
                     android:layout_width="match_parent"
+                android:fontFamily="@font/kanit"
                     android:layout_height="match_parent"
                     android:layout_marginTop="10dp"
                 android:textSize="18sp"
@@ -223,6 +230,7 @@
             <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/ET_SnameOPT"
                     android:layout_width="match_parent"
+                android:fontFamily="@font/kanit"
                     android:layout_height="match_parent"
                     android:layout_marginTop="10dp"
                     android:drawableLeft="@drawable/ic_baseline_dashboard_24"
@@ -250,6 +258,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="10dp"
+                android:fontFamily="@font/kanit"
                     android:drawableLeft="@drawable/ic_baseline_house_24"
                     android:drawablePadding="10dp"
                     android:ems="10"
@@ -269,7 +278,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/btn_add"
-                android:fontFamily="monospace"
+                android:fontFamily="@font/kanit"
                 android:textColor="#FFFFFF"
                 android:text="สมัครสมาชิก"
                 android:textSize="24sp"

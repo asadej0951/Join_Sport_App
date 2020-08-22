@@ -7,6 +7,7 @@ class Preferrences(private var context: Context) {
     companion object {
         private const val FILENAME = "app_project"
         private const val USERNAME = "u_user"
+        private const val IDIMAGE = "ID_image"
         private const val ID = "u_id"
         private const val STATUS = "status"
         private const val IMAGE = "image"
@@ -29,6 +30,9 @@ class Preferrences(private var context: Context) {
     }
     fun getName_lname(): String {
         return getString(NAME_LNAME) ?: ""
+    }
+    fun getIDImage(): String {
+        return getString(IDIMAGE) ?: ""
     }
 
     private fun getString(key: String): String? {
@@ -59,6 +63,9 @@ class Preferrences(private var context: Context) {
     }
     fun saveName_lname(name: String) {
         saveString(NAME_LNAME, name)
+    }
+    fun saveIDImage(IDImage: String) {
+        saveString(IDIMAGE, IDImage)
     }
 
     private fun saveString(key: String, value: String) {

@@ -20,6 +20,7 @@ import com.example.join_sport_app.presenter.PresenterGetName
 import com.example.join_sport_app.presenter.PresenterOperator
 import com.example.join_sport_app.rest.Utils
 import com.example.join_sport_app.uioperator.menu.Manage_StadiumActivity
+import com.example.join_sport_app.uioperator.menu.Update_StadiumActivity
 import com.example.myapplicationproject.rest.local.Preferrences
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.item_stadiam.view.*
@@ -42,9 +43,9 @@ class AdapterStadiam(val ct : Context,private var mDataStadiam :ArrayList<Respon
         mPreferrences = Preferrences(ct)
 
         holder.nameStadiam.text = mDataStadiam[position].s_name
-        Picasso.get().load(Utils.host+"/imageregister/"+mDataStadiam.get(position).o_img).into(holder.imguser)
+        Picasso.get().load(Utils.host+"/imageregister/"+mDataStadiam.get(position).img).into(holder.imguser)
 
-        Picasso.get().load(Utils.host+"/imageStadium/"+mDataStadiam.get(position).img).into(holder.imgStadiam)
+        Picasso.get().load(Utils.host+"/imageStadium/"+mDataStadiam.get(position).Simg).into(holder.imgStadiam)
 
         if (mDataStadiam.get(position).o_id.toString() ==mPreferrences.getID()){
             holder.itemView.setOnLongClickListener {
@@ -54,6 +55,19 @@ class AdapterStadiam(val ct : Context,private var mDataStadiam :ArrayList<Respon
                         _,which ->
                     when(which){
                         0->{
+                            val i = Intent(ct,Update_StadiumActivity::class.java)
+                            i.putExtra("s_id",mDataStadiam[position].s_id)
+                            i.putExtra("o_id",mDataStadiam[position].o_id)
+                            i.putExtra("s_name",mDataStadiam[position].s_name)
+                            i.putExtra("s_lat",mDataStadiam[position].s_lat)
+                            i.putExtra("s_long",mDataStadiam[position].s_long)
+                            i.putExtra("s_address",mDataStadiam[position].s_address)
+                            i.putExtra("s_type",mDataStadiam[position].s_type)
+                            i.putExtra("s_price",mDataStadiam[position].s_price)
+                            i.putExtra("s_timeopen",mDataStadiam[position].s_timeopen)
+                            i.putExtra("s_timeclose",mDataStadiam[position].s_timeclose)
+                            ct.startActivity(i)
+                            (ct as Activity).finish()
                         }
                         1->{
                             setAPIDeleteStadium(mDataStadiam.get(position).s_id.toString())
