@@ -7,6 +7,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -70,8 +71,7 @@ class AdapterStadiam(val ct : Context,private var mDataStadiam :ArrayList<Respon
                             (ct as Activity).finish()
                         }
                         1->{
-                            setAPIDeleteStadium(mDataStadiam.get(position).s_id.toString())
-                            setAPIDeleteJoinStadium(mDataStadiam.get(position).s_id.toString())
+                            showMessageDelete(mDataStadiam.get(position).s_id)
                         }
                     }
                 }
@@ -79,6 +79,32 @@ class AdapterStadiam(val ct : Context,private var mDataStadiam :ArrayList<Respon
                 true
             }
         }
+    }
+    private fun showMessageDelete(acId: Int) {
+
+        val DialogMessage = LayoutInflater.from(ct).inflate(R.layout.dialog_message,null)
+        val text = DialogMessage.findViewById<TextView>(R.id.Message_dialog)
+        text.setText("การลบสนามกีฬาไม่สามารถกู้คืนได้ \nคุณแน่ใจจะลบสนามกีฬา ใช่หรือไม่?")
+        val Btn_OK = DialogMessage.findViewById<Button>(R.id.btn_OK)
+        val Btn_cancel = DialogMessage.findViewById<Button>(R.id.btn_cancel_Dialog)
+        val Dialog =  AlertDialog.Builder(ct).apply {
+            setIcon(R.drawable.alert)
+            setTitle("คำเตือน!!")
+            setView(DialogMessage)
+        }
+        val DialogButton = Dialog.show()
+
+        Btn_OK.setText("แน่ใจ")
+        Btn_cancel.setText("ยกเลิก")
+        Btn_OK.setOnClickListener {
+            setAPIDeleteStadium(acId.toString())
+            setAPIDeleteJoinStadium(acId.toString())
+            DialogButton.dismiss()
+        }
+        Btn_cancel.setOnClickListener {
+            DialogButton.dismiss()
+        }
+
     }
 
     private fun setAPIDeleteJoinStadium(sId: String) {

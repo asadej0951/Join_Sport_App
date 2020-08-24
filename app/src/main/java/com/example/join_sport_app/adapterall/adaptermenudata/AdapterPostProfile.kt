@@ -8,6 +8,7 @@ import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
@@ -57,8 +58,7 @@ class AdapterPostProfile (val ct : Context, private var mDataPost: ArrayList<Res
                         (ct as Activity).finish()
                     }
                     1->{
-                        DeleteAPI(mDataPost[position].p_id)
-                        (ct as Activity).finish()
+                        showMessageDelete(mDataPost[position].p_id)
                     }
                 }
             }
@@ -66,6 +66,35 @@ class AdapterPostProfile (val ct : Context, private var mDataPost: ArrayList<Res
             true
         }
     }
+
+    private fun showMessageDelete(acId: Int) {
+
+        val DialogMessage = LayoutInflater.from(ct).inflate(R.layout.dialog_message,null)
+        val text = DialogMessage.findViewById<TextView>(R.id.Message_dialog)
+        text.setText("การลบข้อความโพสต์ไม่สามารถกู้คืนได้ \nคุณแน่ใจจะลบข้อความโพสต์แน่หรือไหม?")
+        val Btn_OK = DialogMessage.findViewById<Button>(R.id.btn_OK)
+        val Btn_cancel = DialogMessage.findViewById<Button>(R.id.btn_cancel_Dialog)
+        val Dialog =  AlertDialog.Builder(ct).apply {
+            setIcon(R.drawable.alert)
+            setTitle("คำเตือน!!")
+            setView(DialogMessage)
+        }
+        val DialogButton = Dialog.show()
+
+        Btn_OK.setText("แน่ใจ")
+        Btn_cancel.setText("ยกเลิก")
+        Btn_OK.setOnClickListener {
+            DeleteAPI(acId)
+            (ct as Activity).finish()
+            DialogButton.dismiss()
+        }
+        Btn_cancel.setOnClickListener {
+
+            DialogButton.dismiss()
+        }
+
+    }
+
     private fun DeleteAPI(PID:Int){
         mPresenterPost.deletePostPresenterRX(PID,this::DeleteNext,this::DeleteError)
     }

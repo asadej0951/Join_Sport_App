@@ -4,26 +4,23 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import com.example.join_sport_app.MainActivity
 import com.example.join_sport_app.MainActivityOperator
 import com.example.join_sport_app.R
 import com.example.join_sport_app.model.ResponseImageUser
 import com.example.join_sport_app.model.ResponseLoginOPT
-import com.example.join_sport_app.model.admin.ResponseAdmin
 import com.example.join_sport_app.model.operator.ResponseImageOPT
-import com.example.join_sport_app.presenter.PresenterAdmin
 import com.example.join_sport_app.presenter.PresenterOperator
 import com.example.myapplicationproject.model.ResponseLogin
 import com.example.myapplicationproject.presenter.PresenterUser
 import com.example.myapplicationproject.rest.local.Preferrences
-import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_login.*
-import retrofit2.converter.gson.GsonConverterFactory
+import kotlinx.android.synthetic.main.dialog_message_show.view.*
 
 class LoginActivity : AppCompatActivity() {
     var mLoginPresenter = PresenterUser()
     var mPresenterOPT = PresenterOperator()
-    var mPresenterAM = PresenterAdmin()
     var mPreferrences = Preferrences(this)
     lateinit var radioButton: RadioButton
 
@@ -71,13 +68,16 @@ class LoginActivity : AppCompatActivity() {
 
             }
             else if (UN!=""&&PW==""){
-                Toast.makeText(applicationContext,"กรุณากรอกรหัสผ่าน", Toast.LENGTH_SHORT).show()
+                ShowDialogMessage("กรุณากรอกรหัสผ่าน")
+                //Toast.makeText(applicationContext,"กรุณากรอกรหัสผ่าน", Toast.LENGTH_SHORT).show()
             }
             else if (UN==""&&PW!=""){
-                Toast.makeText(applicationContext,"กรุณากรอก ID ", Toast.LENGTH_SHORT).show()
+                ShowDialogMessage("กรุณากรอก ID ")
+//                Toast.makeText(applicationContext,"กรุณากรอก ID ", Toast.LENGTH_SHORT).show()
             }
             else{
-                Toast.makeText(applicationContext,"กรุณากรอก ID และ รหัสผ่าน ", Toast.LENGTH_SHORT).show()
+                ShowDialogMessage("กรุณากรอก ID และ รหัสผ่าน ")
+//                Toast.makeText(applicationContext,"กรุณากรอก ID และ รหัสผ่าน ", Toast.LENGTH_SHORT).show()
             }
 
         }
@@ -88,6 +88,20 @@ class LoginActivity : AppCompatActivity() {
             )
         }
     }
+    private fun ShowDialogMessage(message:String){
+        val View = layoutInflater.inflate(R.layout.dialog_message_show,null)
+        View.Message_dialog_Show.setText(message)
+        View.btn_OK_show.setText("ปิด")
+        val dialog = AlertDialog.Builder(this@LoginActivity).apply {
+            setTitle("คำเตือน!!")
+            setIcon(R.drawable.alert)
+            setView(View)
+        }
+        val dialogButton = dialog.show()
+        View.btn_OK_show.setOnClickListener {
+            dialogButton.dismiss()
+        }
+    }
 
     private fun setapiOPT(un: String, pw: String, status: String) {
         //เช็ค login ของผู้ประกอบการ
@@ -95,7 +109,8 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun LoginError(message: String) {
-        Toast.makeText(applicationContext, "รหัสผ่านไม่ถูกต้อง", Toast.LENGTH_SHORT).show()
+        ShowDialogMessage("รหัสผ่านไม่ถูกต้อง")
+        //Toast.makeText(applicationContext, "รหัสผ่านไม่ถูกต้อง", Toast.LENGTH_SHORT).show()
     }
 
 
@@ -126,7 +141,7 @@ class LoginActivity : AppCompatActivity() {
             this::onErrorSubscrib)
     }
     private fun onErrorSubscrib(message :String) {
-        Toast.makeText(applicationContext, "รหัสผ่านไม่ถูกต้อง", Toast.LENGTH_SHORT).show()
+        ShowDialogMessage("รหัสผ่านไม่ถูกต้อง")
     }
 
     private fun onSuccessSubscrib(responseLogin: List<ResponseLogin>) {

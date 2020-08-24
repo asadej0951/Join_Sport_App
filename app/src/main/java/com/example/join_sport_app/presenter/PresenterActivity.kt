@@ -3,6 +3,7 @@ package com.example.myapplicationproject.presenter
 import android.util.Log
 import com.example.join_sport_app.body.activity.BodyActivityUser
 import com.example.join_sport_app.body.activity.BodyDeleteJoinActivity
+import com.example.join_sport_app.model.ResponseJoinActivityItem
 import com.example.myapplicationproject.body.BodyCheck
 import com.example.myapplicationproject.body.BodyInsertActivity
 import com.example.myapplicationproject.body.BodyJoin
@@ -181,6 +182,28 @@ class PresenterActivity {
                 }
                 override fun onError(e: Throwable) {
                     Log.d("Delete",e.message.toString())
+                    MessageError.invoke(e.message!!)
+                }
+
+            })
+    }
+
+    fun showJoinActivityPresenterRX(
+        id: Int,
+        dataResponse:(List<ResponseJoinActivityItem>)->Unit,
+        MessageError:(String)->Unit
+    ){
+        mDisposable = DataModule.myAppService.showJoinActivity(id)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeWith(object : DisposableObserver<List<ResponseJoinActivityItem>>(){
+                override fun onComplete() {}
+                override fun onNext(response: List<ResponseJoinActivityItem>) {
+                    Log.d("showJoinActivity",response.toString())
+                    dataResponse.invoke(response)
+                }
+                override fun onError(e: Throwable) {
+                    Log.d("showJoinActivity",e.message.toString())
                     MessageError.invoke(e.message!!)
                 }
 

@@ -95,14 +95,15 @@ class HomeFragment : Fragment() {
         Dialog.setTitle("โพสต์ข้อความ")
         Dialog.setView(mDialogView)
         Dialog.setIcon(R.drawable.iconpost)
-        Dialog.setPositiveButton("โพสต์"){dialog, which ->
+        val DialogButton = Dialog.show()
+        mDialogView.btn_Post.setOnClickListener {
             setAPIPost(message.text.toString())
             mResponsePost.clear()
+            DialogButton.dismiss()
         }
-        Dialog.setNegativeButton("ยกเลิก"){
-                dialog, which ->
+        mDialogView.btn_cancel_Post.setOnClickListener {
+            DialogButton.dismiss()
         }
-        Dialog.show()
     }
     private fun setAPIPost(message: String) {
         val calendar = Calendar.getInstance()

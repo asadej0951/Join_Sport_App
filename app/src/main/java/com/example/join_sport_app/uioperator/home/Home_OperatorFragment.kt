@@ -71,8 +71,6 @@ class Home_OperatorFragment : Fragment() {
         Picasso.get().load(Utils.host+"/imageregister/"+mPreferrences.getImage()).into(root.img_user_HomeOPT)
         root.findViewById<FloatingActionButton>(R.id.btn_Post_OTP).apply {
             setOnClickListener {
-//                val DialogPost = PostDialogFragment()
-//                DialogPost.show(parentFragmentManager,"Dialog")
                 showDialog()
             }
         }
@@ -87,14 +85,15 @@ class Home_OperatorFragment : Fragment() {
             Dialog.setTitle("โพสต์ข้อความ")
             Dialog.setView(mDialogView)
         Dialog.setIcon(R.drawable.iconpost)
-            Dialog.setPositiveButton("โพสต์"){dialog, which ->
-                setAPIPost(message.text.toString())
-                mResponsePost.clear()
-            }
-            Dialog.setNegativeButton("ยกเลิก"){
-                dialog, which ->
-            }
-        Dialog.show()
+        val DialogButton = Dialog.show()
+        mDialogView.btn_Post.setOnClickListener {
+            setAPIPost(message.text.toString())
+            mResponsePost.clear()
+            DialogButton.dismiss()
+        }
+        mDialogView.btn_cancel_Post.setOnClickListener {
+            DialogButton.dismiss()
+        }
     }
     private fun setAPIPost(message: String) {
         val calendar = Calendar.getInstance()

@@ -6,6 +6,8 @@ import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.join_sport_app.R
@@ -76,8 +78,7 @@ class AdapterActivityUser(val ct : Context, private var mDataActivity : ArrayLis
                     }
                     2->{
                         //ลบกิจกรรม
-                        setAPIDelete(mDataActivity[position].ac_id)
-
+                        showMessageDelete(mDataActivity[position].ac_id)
                     }
                 }
             }
@@ -86,6 +87,32 @@ class AdapterActivityUser(val ct : Context, private var mDataActivity : ArrayLis
         }
 
     }
+    private fun showMessageDelete(acId: Int) {
+
+        val DialogMessage = LayoutInflater.from(ct).inflate(R.layout.dialog_message,null)
+        val text = DialogMessage.findViewById<TextView>(R.id.Message_dialog)
+        text.setText("การลบกิจกรรมไม่สามารถกู้คืนได้ \nคุณแน่ใจจะลบกิจกรรมแน่หรือไหม?")
+        val Btn_OK = DialogMessage.findViewById<Button>(R.id.btn_OK)
+        val Btn_cancel = DialogMessage.findViewById<Button>(R.id.btn_cancel_Dialog)
+        val Dialog =  AlertDialog.Builder(ct).apply {
+            setIcon(R.drawable.alert)
+            setTitle("คำเตือน!!")
+            setView(DialogMessage)
+        }
+        val DialogButton = Dialog.show()
+
+        Btn_OK.setText("แน่ใจ")
+        Btn_cancel.setText("ยกเลิก")
+        Btn_OK.setOnClickListener {
+            setAPIDelete(acId)
+            DialogButton.dismiss()
+        }
+        Btn_cancel.setOnClickListener {
+            DialogButton.dismiss()
+        }
+
+    }
+
 
     private fun setAPIDelete(acId: Int) {
         mPresenterActivity.DeletePresenterRX(acId,this::DeleteAcNext,this::DeleteError)

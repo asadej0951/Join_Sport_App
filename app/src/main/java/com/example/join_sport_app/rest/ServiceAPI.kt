@@ -3,12 +3,10 @@ package com.example.myapplicationproject.rest
 import com.example.join_sport_app.body.activity.BodyActivityUser
 import com.example.join_sport_app.body.activity.BodyDeleteJoinActivity
 import com.example.join_sport_app.body.activity.BodyGetCheckTimeStadium
-import com.example.join_sport_app.body.admin.BodyLoginAM
 import com.example.join_sport_app.body.operator.*
 import com.example.join_sport_app.body.post.*
 import com.example.join_sport_app.body.user.*
 import com.example.join_sport_app.model.*
-import com.example.join_sport_app.model.admin.ResponseAdmin
 import com.example.join_sport_app.model.getname.ResponseNameOPT
 import com.example.join_sport_app.model.operator.ResponseImageOPT
 import com.example.join_sport_app.model.operator.ResponseOPTProfile
@@ -74,6 +72,9 @@ interface ServiceAPI {
 
     @POST("/deleteJoin")
     fun  dodeleteJoin(@Body body : BodyDeleteJoinActivity?) :Observable<ResponseJoin>
+
+    @GET("/showJoinActivity/{id}")
+    fun showJoinActivity(@Path("id")id: Int?):Observable<List<ResponseJoinActivityItem>>
 
     //Post
     @POST("/Post")
@@ -169,8 +170,5 @@ interface ServiceAPI {
     @GET("/operator/{id}")
     fun dogetnameOPT(@Path("id")id: Int):Observable<ResponseNameOPT>
 
-    //Admin
-    @POST("loginAM")
-    fun dologinAM(@Body body : BodyLoginAM?):Observable<List<ResponseAdmin>>
 
 }
