@@ -1,5 +1,6 @@
 package com.example.myapplicationproject.rest
 
+import com.example.join_sport_app.body.BodyNotification
 import com.example.join_sport_app.body.activity.BodyActivityUser
 import com.example.join_sport_app.body.activity.BodyDeleteJoinActivity
 import com.example.join_sport_app.body.activity.BodyGetCheckTimeStadium
@@ -165,6 +166,17 @@ interface ServiceAPI {
 
     @DELETE("/deleteJoinStadium_sID/{id}")
     fun doDeleteJoinStadium_sID(@Path("id")id: Int):Observable<ResponseJoinStadium>
+
+    //notification
+    @POST("/notification")
+    fun Postnotification(@Body body: BodyNotification?):Observable<ResponseListNotification>
+
+    @GET("/Checknotification/{id}")
+    fun Checknotification(@Path("id")id: Int):Observable<List<ResponseNotification>>
+
+    @DELETE("/deletenotification/{id}")
+    fun deletenotification(@Path("id")id: Int):Observable<ResponseNotification>
+
 
     //ดึงชื่อของผู้ใช้ออกมาแสดง
     @GET("/operator/{id}")

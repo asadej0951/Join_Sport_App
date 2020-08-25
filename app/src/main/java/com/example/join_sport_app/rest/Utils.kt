@@ -9,7 +9,7 @@ class Utils {
     companion object {
         //const val host = "http://192.168.1.7/"
         //const val host = "http://10.255.252.44/"
-        const val host = "http://192.168.1.4:4000"
+        const val host = "http://192.168.43.90:4000"
 
         val dateFormatter: DateFormat = SimpleDateFormat("yyyy-MM-dd")
         val timeFormatter: DateFormat = SimpleDateFormat("HH:mm")

@@ -1,7 +1,12 @@
 package com.example.join_sport_app.ui.home
 
-import android.app.AlertDialog
+import android.app.*
+import android.content.Intent
+import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.media.Image
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,9 +18,12 @@ import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.join_sport_app.R
 import com.example.join_sport_app.adapterall.AdapterPost
+import com.example.join_sport_app.model.ResponseNotification
 import com.example.join_sport_app.model.ResponsePost
+import com.example.join_sport_app.presenter.PresenterNotification
 import com.example.join_sport_app.presenter.PresenterPost
 import com.example.join_sport_app.rest.Utils
+import com.example.join_sport_app.uioperator.menu.Check_JoinStadiam_Activity
 import com.example.myapplicationproject.adapterall.AdapterActivity
 import com.example.myapplicationproject.model.ResponseActivity
 import com.example.myapplicationproject.rest.local.Preferrences
@@ -35,8 +43,12 @@ class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
 
+
+
+
     lateinit var mPreferrences: Preferrences
     var mPresenterPost = PresenterPost()
+    var mPresenterNotification = PresenterNotification()
     var mResponsePost = ArrayList<ResponsePost>()
     lateinit var mAdapterPost : AdapterPost
     private var Image = ""
@@ -49,10 +61,15 @@ class HomeFragment : Fragment() {
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel::class.java)
         val root = inflater.inflate(R.layout.fragment_home, container, false)
+        startActivity(
+            Intent(context,notification_Activity::class.java)
+        )
         setAPIShowPost()
         initview(root)
         return root.rootView
     }
+
+
 
     private fun setAPIShowPost() {
         mPresenterPost.ShowPostPresenterRX(this::ShowPostNext,this::ShowPostError)
@@ -129,4 +146,5 @@ class HomeFragment : Fragment() {
     private fun PostNext(responseOperator : ResponsePost) {
         setAPIShowPost()
     }
+
 }

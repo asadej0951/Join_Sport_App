@@ -9,6 +9,9 @@ import android.widget.RadioGroup
 import android.widget.Toast
 import com.example.join_sport_app.R
 import com.example.join_sport_app.model.ResponseJoinStadium
+import com.example.join_sport_app.model.ResponseListNotification
+import com.example.join_sport_app.model.ResponseNotification
+import com.example.join_sport_app.presenter.PresenterNotification
 import com.example.join_sport_app.presenter.PresenterOperator
 import com.example.join_sport_app.rest.Utils
 import com.squareup.picasso.Picasso
@@ -21,6 +24,10 @@ class Detail_JoinStadium_Activity : AppCompatActivity() {
     private var MM_out :Int? = null
     lateinit var radioButton: RadioButton
     var mPresenterOperator = PresenterOperator()
+    var mPresenterNotification =PresenterNotification()
+    var U_ID = ""
+    var Status = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail__join_stadium_)
@@ -60,7 +67,7 @@ class Detail_JoinStadium_Activity : AppCompatActivity() {
             }
         }
         save_DetailStadium.setOnClickListener {
-            var Status = ""
+
             val r_status = Staus_CheckDetailStadium.text.toString()
             if (r_status=="อนุมัติ"){
                 Status = "3"+r_status
@@ -68,6 +75,7 @@ class Detail_JoinStadium_Activity : AppCompatActivity() {
             else{
                 Status = "2"+r_status
             }
+            U_ID =u_id
 
             setAPIUPDate(r_id.toInt(),u_id,o_id,s_id,s_name,u_name,u_phone,r_Date,r_timein,r_timeout,Status,u_price.toInt(),r_type)
         }
@@ -93,10 +101,17 @@ class Detail_JoinStadium_Activity : AppCompatActivity() {
     }
 
     private fun updateStatusJoinStadiumNext(response : ResponseJoinStadium) {
+        mPresenterNotification.PostNotificationPresenterRX(U_ID,"สนามกีฬา",Status,this::PostNotificationNext,this::PostNotificationError)
+    }
+
+    private fun PostNotificationNext(response: ResponseListNotification) {
         startActivity(
             Intent(applicationContext,Check_JoinStadiam_Activity::class.java)
         )
         finish()
+    }
+
+    private fun PostNotificationError(message: String) {
     }
 
     private fun updateStatusJoinStadiumError(message:String) {
