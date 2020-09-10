@@ -11,7 +11,7 @@ class PagerAdapterActivity (fragmentManager: FragmentManager, lifecycle: Lifecyc
     FragmentStateAdapter(fragmentManager, lifecycle) {
 
     var fragments:ArrayList<Fragment> = arrayListOf(
-        Activity_Fragment(), Join_Activity_Fragment()
+        Join_Activity_Fragment(),Activity_Fragment()
     )
     override fun getItemCount() = fragments.size
 

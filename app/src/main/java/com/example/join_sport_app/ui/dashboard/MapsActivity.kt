@@ -186,6 +186,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback,GoogleMap.OnMarkerC
         }
         map.setOnMapClickListener(object :GoogleMap.OnMapClickListener{
             override fun onMapClick(p0: LatLng) {
+                map.clear()
                 map.addMarker(
                     MarkerOptions().position(p0).title(
                         p0.latitude.toString()+","+p0.longitude.toString()

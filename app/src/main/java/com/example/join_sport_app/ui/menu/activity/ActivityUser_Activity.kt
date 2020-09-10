@@ -41,7 +41,7 @@ class ActivityUser_Activity : AppCompatActivity() {
         var ViewPagerActivity = findViewById<ViewPager2>(R.id.ViewPager_Activity)
         ViewPagerActivity.adapter = PagerAdapterActivity(supportFragmentManager,lifecycle)
         var tabLayoutActivity = findViewById<TabLayout>(R.id.tabLayout_Activity)
-        var data = arrayListOf<String>("กิจกรรมที่สร้าง","กิจกรรมที่เข้าร่วม")
+        var data = arrayListOf<String>("กิจกรรมที่เข้าร่วม","กิจกรรมที่สร้าง")
         TabLayoutMediator(tabLayoutActivity,ViewPagerActivity){
             tab, position ->  tab.text = data[position]
         }.attach()

@@ -3,6 +3,10 @@ package com.example.myapplicationproject.presenter
 import android.util.Log
 import com.example.join_sport_app.body.activity.BodyActivityUser
 import com.example.join_sport_app.body.activity.BodyDeleteJoinActivity
+import com.example.join_sport_app.body.post.BodyChat
+import com.example.join_sport_app.model.Message
+import com.example.join_sport_app.model.ResponseChat
+import com.example.join_sport_app.model.ResponseGetChat
 import com.example.join_sport_app.model.ResponseJoinActivityItem
 import com.example.myapplicationproject.body.BodyCheck
 import com.example.myapplicationproject.body.BodyInsertActivity
@@ -50,11 +54,102 @@ class PresenterActivity {
 
             })
     }
+
+    fun ChatPresenterRX(
+        ac_id: String,
+        u_id :String,
+        message: String,
+        dataResponse:(ResponseChat)->Unit,
+        MessageError:(String)->Unit
+    ){
+        mDisposable = DataModule.myAppService.Chat(BodyChat(ac_id,u_id, message))
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeWith(object : DisposableObserver<ResponseChat>(){
+                override fun onComplete() {}
+                override fun onNext(response: ResponseChat) {
+                    Log.d("Create",response.toString())
+                    dataResponse.invoke(response)
+                }
+                override fun onError(e: Throwable) {
+                    Log.d("Create",e.message.toString())
+                    MessageError.invoke(e.message!!)
+                }
+
+            })
+    }
+
     fun ShowActivityPresenterRX(
         dataResponse:(List<ResponseActivity>)->Unit,
         MessageError:(String)->Unit
     ){
         mDisposable = DataModule.myAppService.doshowactivity()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeWith(object : DisposableObserver<List<ResponseActivity>>(){
+                override fun onComplete() {}
+                override fun onNext(response: List<ResponseActivity>) {
+                    Log.d("messsage",response.toString())
+                    dataResponse.invoke(response)
+                }
+                override fun onError(e: Throwable) {
+                    Log.d("messsage",e.toString())
+                    MessageError.invoke(e.message!!)
+                }
+
+            })
+    }
+
+    fun selectActivityPresenterRX(
+        id: Int,
+        dataResponse:(List<ResponseActivity>)->Unit,
+        MessageError:(String)->Unit
+    ){
+        mDisposable = DataModule.myAppService.selectActivity(id)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeWith(object : DisposableObserver<List<ResponseActivity>>(){
+                override fun onComplete() {}
+                override fun onNext(response: List<ResponseActivity>) {
+                    Log.d("messsage",response.toString())
+                    dataResponse.invoke(response)
+                }
+                override fun onError(e: Throwable) {
+                    Log.d("messsage",e.toString())
+                    MessageError.invoke(e.message!!)
+                }
+
+            })
+    }
+
+    fun getMessageChatPresenterRX(
+        id: Int,
+        dataResponse:(List<ResponseGetChat>)->Unit,
+        MessageError:(String)->Unit
+    ){
+        mDisposable = DataModule.myAppService.getMessageChat(id)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeWith(object : DisposableObserver<List<ResponseGetChat>>(){
+                override fun onComplete() {}
+                override fun onNext(response: List<ResponseGetChat>) {
+                    Log.d("messsageChat",response.toString())
+                    dataResponse.invoke(response)
+                }
+                override fun onError(e: Throwable) {
+                    Log.d("messsageChat",e.toString())
+                    MessageError.invoke(e.message!!)
+                }
+
+            })
+    }
+
+    fun getDataActivityPresenterRX(
+        id: Int,
+        dataResponse:(List<ResponseActivity>)->Unit,
+        MessageError:(String)->Unit
+    ){
+        mDisposable = DataModule.myAppService.getDataActivity(id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeWith(object : DisposableObserver<List<ResponseActivity>>(){

@@ -17,6 +17,19 @@
         <item>เต้น</item>
     </string-array>
 
+    <string-array name="Menutype">
+        <item>-- ทั้งหมด --</item>
+        <item>บาสเกตบอล</item>
+        <item>ฟุตบอล</item>
+        <item>วอลเลย์บอล</item>
+        <item>ฟุตซอล</item>
+        <item>ตะกร้อ</item>
+        <item>วิ่ง</item>
+        <item>เทนนิส</item>
+        <item>แบดมินตัน</item>
+        <item>เต้น</item>
+    </string-array>
+
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_maps">Map</string>

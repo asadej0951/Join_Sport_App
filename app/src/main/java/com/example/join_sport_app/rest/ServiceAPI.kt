@@ -49,8 +49,20 @@ interface ServiceAPI {
     @POST("/activity")
     fun doCreate(@Body body : BodyInsertActivity?) : Observable<ResponseActivity>
 
+    @POST("/Chat")
+    fun Chat(@Body body : BodyChat?) : Observable<ResponseChat>
+
+    @GET("/getMessageChat/{id}")
+    fun getMessageChat(@Path("id")id: Int?):Observable<List<ResponseGetChat>>
+
     @GET("/activity")
     fun doshowactivity():Observable<List<ResponseActivity>>
+
+    @GET("/selectActivity/{id}")
+    fun selectActivity(@Path("id")id: Int?):Observable<List<ResponseActivity>>
+
+    @GET("/getDataActivity/{id}")
+    fun getDataActivity(@Path("id")id: Int?):Observable<List<ResponseActivity>>
 
     @PUT("/updateactivity/{id}")
     fun doUpdatenumberjoin(@Path("id")id:Int,@Body body : BodyInsertActivity?) :Observable<ResponseUpdateAC>
@@ -76,6 +88,8 @@ interface ServiceAPI {
 
     @GET("/showJoinActivity/{id}")
     fun showJoinActivity(@Path("id")id: Int?):Observable<List<ResponseJoinActivityItem>>
+
+
 
     //Post
     @POST("/Post")

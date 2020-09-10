@@ -1,6 +1,7 @@
 package com.example.join_sport_app.adapterall
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.join_sport_app.R
 import com.example.join_sport_app.model.ResponseJoinActivityItem
 import com.example.join_sport_app.rest.Utils
+import com.example.join_sport_app.ui.menu.activity.Chat_Activity
 import com.squareup.picasso.Picasso
 
 class AdapterJoinActivity(var ct :Context,private var mDataJoin : ArrayList<ResponseJoinActivityItem>):RecyclerView.Adapter<ViewItemJoinAcyivity>() {
@@ -35,6 +37,11 @@ class AdapterJoinActivity(var ct :Context,private var mDataJoin : ArrayList<Resp
         }
         holder.name_Activity.text = "กิจกรรม : "+mDataJoin.get(position).name_activity
         holder.name_user.text = "จัดตั้งโดย : "+mDataJoin.get(position).name_user
+        holder.itemView.setOnClickListener {
+            var i = Intent(ct,Chat_Activity::class.java)
+            i.putExtra("AC_id",mDataJoin[position].ac_id)
+            ct.startActivity(i)
+        }
     }
 
     override fun getItemCount() = mDataJoin.size

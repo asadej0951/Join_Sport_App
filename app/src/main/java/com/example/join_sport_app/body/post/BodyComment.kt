@@ -11,3 +11,9 @@ data class BodyComment(
 data class BodyCommentImage(
     val img:String
 )
+
+data class BodyChat(
+    val ac_id:String,
+    val u_id:String,
+    val message:String
+)

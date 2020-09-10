@@ -67,15 +67,10 @@ class notification_Activity : AppCompatActivity() {
 
             Builer = Notification.Builder(this,ChannelID)
                 .setContentTitle("Join Sport")
+                .setContentText("การจองสนามกีฬาของคุณ "+message.substring(1))
                 .setSmallIcon(R.drawable.join)
                 .setLargeIcon(BitmapFactory.decodeResource(this.resources,R.drawable.stadium))
                 .setContentIntent(pendingIntent)
-            if (message =="3อนุมัติ"){
-                Builer.setContentText("การจองสนามกีฬาของคุณถูก "+message.substring(1)+" แล้ว")
-            }
-            else{
-                Builer.setContentText("เสียใจการจองสนามกีฬาของคุณ ไม่ถูกอนุมัติ \nกรุณาทำการจองเวลาอื่น")
-            }
         }
         else{
             Builer = Notification.Builder(this)
