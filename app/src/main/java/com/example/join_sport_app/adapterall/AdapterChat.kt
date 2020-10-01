@@ -7,9 +7,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.cardview.widget.CardView
+
 import androidx.recyclerview.widget.RecyclerView
 import com.example.join_sport_app.R
 import com.example.join_sport_app.model.ResponseGetChat
@@ -25,39 +24,24 @@ class AdapterChat(var ct:Context, private var mDataChat : ArrayList<ResponseGetC
     }
 
     override fun onBindViewHolder(holder: ViewHolderChat, position: Int) {
-        if (mDataChat.get(position).u_id!=mPreferrences.getID()){
-            Picasso.get().load(Utils.host+"/imageregister/"+mDataChat[position].img).into(holder.ImageUser)
-            holder.carUser.apply {
-                setBackgroundColor(Color.parseColor("#FFFFFF"))
-            }
-            holder.Message.text = mDataChat.get(position).message
-            holder.nameUser.text = mDataChat.get(position).nameUser+" "+mDataChat.get(position).lnameUser
+        Picasso.get().load(Utils.host+"/imageregister/"+mDataChat[position].img).into(holder.imageChat)
+        if (mPreferrences.getID()==mDataChat.get(position).u_id){
+            holder.nameChat.text = mDataChat.get(position).nameUser+" "+mDataChat.get(position).lnameUser
         }
         else{
-            holder.car.apply {
-                setBackgroundColor(Color.parseColor("#FFFFFF"))
-            }
-            holder.nameUser.apply {
-                setTextColor(Color.parseColor("#FFFFFF"))
-            }
-            holder.MessageUser.apply {
-                setTextColor(Color.parseColor("#FFFFFF"))
-                text = mDataChat.get(position).message
-            }
-            holder.Message.apply {
-                setTextColor(Color.parseColor("#FFFFFF"))
-            }
+            holder.nameChat.setTextColor(Color.parseColor("#000000"))
+            holder.nameChat.text = mDataChat.get(position).nameUser+" "+mDataChat.get(position).lnameUser
         }
+        holder.messageChar.text = mDataChat.get(position).message
+        holder.timeChat.text = mDataChat.get(position).time
     }
 
     override fun getItemCount()=mDataChat.size
 
 }
 class ViewHolderChat(item:View):RecyclerView.ViewHolder(item){
-    var ImageUser = item.findViewById<ImageView>(R.id.image_chat_User)
-    var MessageUser = item.findViewById<TextView>(R.id.User_Chat)
-    var Message = item.findViewById<TextView>(R.id.Message_Chat)
-    var nameUser = item.findViewById<TextView>(R.id.name_Chat)
-    var car = item.findViewById<LinearLayout>(R.id.crad)
-    var carUser = item.findViewById<LinearLayout>(R.id.card_user)
+    val imageChat = item.findViewById<ImageView>(R.id.img_chat)
+    val nameChat = item.findViewById<TextView>(R.id.name_chat)
+    val messageChar = item.findViewById<TextView>(R.id.tv_message_chat)
+    val timeChat = item.findViewById<TextView>(R.id.time_chat)
 }

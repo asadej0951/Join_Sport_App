@@ -67,6 +67,9 @@ interface ServiceAPI {
     @PUT("/updateactivity/{id}")
     fun doUpdatenumberjoin(@Path("id")id:Int,@Body body : BodyInsertActivity?) :Observable<ResponseUpdateAC>
 
+    @PUT("/updatelogoutactivity/{id}")
+    fun doUpdatelogoutactivity(@Path("id")id:Int,@Body body :BodyUpDate?) :Observable<ResponseUpdateAC>
+
     @PUT("/updateDataActivity/{id}")
     fun doUpdateDataActivity(@Path("id")id:Int,@Body body : BodyInsertActivity?) :Observable<ResponseUpdateAC>
 

@@ -44,6 +44,26 @@
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="10dp"
                 app:srcCompat="@drawable/activity" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageButton
+                    android:id="@+id/logout_activity"
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="20dp"
+                    android:background="#008C8888"
+                    android:tint="#FFFFFF"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/logoutactivity" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
         </LinearLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -59,12 +79,13 @@
             android:background="@drawable/cardbackground"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+
             <LinearLayout
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal"
-                android:gravity="center_vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/image_chat"
@@ -72,11 +93,12 @@
                     android:layout_height="50dp"
                     android:layout_marginLeft="20dp"
                     app:srcCompat="@drawable/userimg" />
+
                 <TextView
                     android:id="@+id/Ac_username"
-                    android:layout_marginLeft="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
                     android:fontFamily="@font/kanit"
                     android:text="TextView"
                     android:textColor="#F37B04"
@@ -84,7 +106,8 @@
 
 
             </LinearLayout>
-        <LinearLayout
+
+            <LinearLayout
             android:layout_marginTop="10dp"
             android:orientation="horizontal"
             android:gravity="center_vertical"

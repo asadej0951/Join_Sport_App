@@ -13,6 +13,7 @@ data class ResponseGetChat(
     val chat_id:Int,
     val u_id:String,
     val message:String,
+    val time:String,
     val img:String,
     val lnameUser: String,
     val nameUser:String

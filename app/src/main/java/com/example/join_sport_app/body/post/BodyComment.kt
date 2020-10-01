@@ -15,5 +15,6 @@ data class BodyCommentImage(
 data class BodyChat(
     val ac_id:String,
     val u_id:String,
-    val message:String
+    val message:String,
+    val time:String
 )

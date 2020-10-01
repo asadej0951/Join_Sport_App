@@ -11,3 +11,6 @@ data class BodyInsertActivity (
     val ac_long :String,
     val user_name:String
 )
+data class BodyUpDate(
+    val ac_numberjoin :Int
+)

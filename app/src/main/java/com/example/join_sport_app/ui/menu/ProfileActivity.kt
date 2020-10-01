@@ -90,7 +90,6 @@ class ProfileActivity : AppCompatActivity() {
     }
 
     private fun UpdateImageNext(ResponsePost: ResponsePost) {
-        Toast.makeText(applicationContext, "แก้ไขรูปโพสต์เสร็จสิ้น", Toast.LENGTH_SHORT).show()
         mPostPresenter.updateDataCommentImagePresenterRX(mPreferrences.getID().toInt(),imageName!!.name,this::CommentNext,this::CommentError)
 
     }

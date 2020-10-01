@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.widget.RadioButton
 import android.widget.Toast
 import com.example.join_sport_app.R
+import com.example.join_sport_app.ui.menu.activity.Chat_Activity
 import com.example.myapplicationproject.model.ResponseCheck
 import com.example.myapplicationproject.model.ResponseJoin
 import com.example.myapplicationproject.model.ResponseUpdateAC
@@ -111,14 +112,14 @@ class UpdateNumberActivity : AppCompatActivity() {
         longAC: String,
         userName: String
     ) {
-        mActivityPresenter.UpdateActivityPresenterRX(acID,userID,nameAC,typeAC,timeAC,numberAC,nbj,latAC,longAC,userName,mPreferrences.getImage(),this::UpAcivityNext,this::UpAcivityError)
+        mActivityPresenter.UpdateActivityPresenterRX(acID,userID,nameAC,typeAC,timeAC,numberAC,nbj,latAC,longAC,userName,this::UpAcivityNext,this::UpAcivityError)
     }
 
     private fun UpAcivityError(message:String) {
         Toast.makeText(applicationContext,"เข้าร่วมไม่สำเร็จ",Toast.LENGTH_SHORT).show()
     }
     private fun UpAcivityNext(responseUpdateAC: ResponseUpdateAC) {
-        setResult(Activity.RESULT_OK)
+
         finish()
     }
 
@@ -136,6 +137,10 @@ class UpdateNumberActivity : AppCompatActivity() {
                 var NBJ :Int = NumberJoin!!+1
                 setAPIUpdateActivity(ID!!,UserID,name,Type,Time,Number!!,NBJ,lat,long,Username)
                 setAPIJoin(mPreferrences.getID(),ID!!.toString(),"เข้าร่วมกิจกรรมนี้แล้ว")
+                var i = Intent(applicationContext,Chat_Activity::class.java)
+                i.putExtra("AC_id",ID.toString())
+                startActivity(i)
+                setResult(Activity.RESULT_OK)
             }
             else{
                 setResult(Activity.RESULT_OK)
@@ -152,7 +157,6 @@ class UpdateNumberActivity : AppCompatActivity() {
             if (radioButton == rb_2){
                 var NBJ :Int = NumberJoin!!-1
                 setAPIUpdateActivity(ID!!,UserID,name,Type,Time,Number!!,NBJ,lat,long,Username)
-//                Toast.makeText(applicationContext, mPreferrences.getID()+"/"+ID.toString(), Toast.LENGTH_SHORT).show()
                 setAPIDelete(mPreferrences.getID(),ID!!.toString())
             }
             else{

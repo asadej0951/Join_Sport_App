@@ -1,5 +1,6 @@
 package com.example.join_sport_app.adapterall
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
@@ -41,6 +42,7 @@ class AdapterJoinActivity(var ct :Context,private var mDataJoin : ArrayList<Resp
             var i = Intent(ct,Chat_Activity::class.java)
             i.putExtra("AC_id",mDataJoin[position].ac_id)
             ct.startActivity(i)
+            (ct as Activity).finish()
         }
     }
 

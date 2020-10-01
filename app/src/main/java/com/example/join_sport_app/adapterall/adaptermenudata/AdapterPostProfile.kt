@@ -46,7 +46,7 @@ class AdapterPostProfile (val ct : Context, private var mDataPost: ArrayList<Res
         holder.timePost.text = mDataPost.get(position).p_time
         holder.itemView.setOnLongClickListener {
             val builderSingle = AlertDialog.Builder(ct)
-            val animals = arrayOf("แก้ไขกิจกรรม","ลบกิจกรรม")
+            val animals = arrayOf("แก้ไขข้อความโพสต์","ลบข้อความโพสต์")
             builderSingle.setItems(animals){
                     _,which ->
                 when(which){

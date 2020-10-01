@@ -49,7 +49,6 @@ class ProfileOPT_Activity : AppCompatActivity() {
         setContentView(R.layout.activity_profile_o_p_t_)
         setAPIShowProfile()
         initViewButton()
-        Toast.makeText(applicationContext, mPreferrences.getIDImage(), Toast.LENGTH_SHORT).show()
     }
 
     private fun initViewButton() {

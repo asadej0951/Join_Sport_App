@@ -11,6 +11,7 @@ import com.example.join_sport_app.model.ResponseJoinActivityItem
 import com.example.myapplicationproject.body.BodyCheck
 import com.example.myapplicationproject.body.BodyInsertActivity
 import com.example.myapplicationproject.body.BodyJoin
+import com.example.myapplicationproject.body.BodyUpDate
 import com.example.myapplicationproject.model.ResponseActivity
 import com.example.myapplicationproject.model.ResponseCheck
 import com.example.myapplicationproject.model.ResponseJoin
@@ -59,10 +60,11 @@ class PresenterActivity {
         ac_id: String,
         u_id :String,
         message: String,
+        time:String,
         dataResponse:(ResponseChat)->Unit,
         MessageError:(String)->Unit
     ){
-        mDisposable = DataModule.myAppService.Chat(BodyChat(ac_id,u_id, message))
+        mDisposable = DataModule.myAppService.Chat(BodyChat(ac_id,u_id, message,time))
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribeWith(object : DisposableObserver<ResponseChat>(){
@@ -176,7 +178,6 @@ class PresenterActivity {
         ac_lat :String,
         ac_long :String,
         user_name: String,
-        u_img: String,
         dataResponse:(ResponseUpdateAC)->Unit,
         MessageError:(String)->Unit
     ){
@@ -190,6 +191,28 @@ class PresenterActivity {
                     dataResponse.invoke(response)
                 }
                 override fun onError(e: Throwable) {
+                    MessageError.invoke(e.message!!)
+                }
+
+            })
+    }
+    fun UpdatelogoutactivityPresenterRX(
+        id:Int,
+        ac_numberjoin :Int,
+        dataResponse:(ResponseUpdateAC)->Unit,
+        MessageError:(String)->Unit
+    ){
+        mDisposable = DataModule.myAppService.doUpdatelogoutactivity(id, BodyUpDate(ac_numberjoin))
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribeWith(object : DisposableObserver<ResponseUpdateAC>(){
+                override fun onComplete() {}
+                override fun onNext(response: ResponseUpdateAC) {
+                    Log.d("messsageup",response.toString())
+                    dataResponse.invoke(response)
+                }
+                override fun onError(e: Throwable) {
+                    Log.d("messsageup",e.message.toString())
                     MessageError.invoke(e.message!!)
                 }
 
